@@ -31,9 +31,8 @@ Follow the `README.txt` inside the Manual ZIP in order. It includes exact copy d
 
 ## Controls and version changes
 
-- Open the settings menu with **Ctrl + Alt + F10**.
 - Use the menu's HUD switch to show or hide the overlay. Version 0.10.4 removes the separate custom HUD visibility shortcut.
-- The logo and menu shortcut are retained; the update rate is capped at 30 Hz.
+- The logo is retained; the update rate is capped at 30 Hz.
 - Portrait replacement is optional and disabled by default in the installer.
 
 ## Removal and restoration
@@ -55,6 +54,10 @@ Windows and the DCS F-4E are required. DCS in-game operation and multiplayer Int
 If installation stops on a conflicting file, back up and review it before proceeding. For display problems, check the selected Saved Games profile, Export.lua loader, Jester log path, and server export permissions.
 
 Report issues at https://github.com/Bishop-611/DCS-BA-MODS/issues with your DCS version, installation method, reproduction steps, and screenshots. Remove personal details before sharing logs.
+
+## Antivirus alerts
+
+Some antivirus products may flag the EXE installer. Such alerts may be false positives, but an alert should not be assumed harmless. Download only from the official GitHub release and compare the file's SHA-256 with SHA256SUMS.txt. Matching hashes confirm the download matches the published file; they do not prove it is safe. If an alert appears, review the detection or report it to the maintainer and antivirus vendor. Do not disable antivirus protection. The Manual ZIP is available if you prefer not to run the Setup EXE; its scripts may also be scanned.
 
 ## License
 
