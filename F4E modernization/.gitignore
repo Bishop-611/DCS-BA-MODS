@@ -1,0 +1,9 @@
+# Generated build and local test data
+Development/payload.zip
+Development/Tests/Run-*/
+Development/Tests/syntax.lua
+Backup/
+ManagerData/
+*.log
+paths.txt
+installed.json
