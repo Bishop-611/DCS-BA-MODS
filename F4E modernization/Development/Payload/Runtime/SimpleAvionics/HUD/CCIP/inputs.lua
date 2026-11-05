@@ -37,11 +37,20 @@ function M.capture(api)
             if t[1]==4 and (t[2]==4 or t[2]==5 or t[2]==6 or t[2]==7) then remaining=remaining+station.count end
         end
     end
-    local name,station,code,selection
-    if remaining==0 then
+    local function result(name,station,code,selection)
+        local arming=draw(1221)
+        local tailArmed=arming and (math.floor(arming*4+.5)==2 or math.floor(arming*4+.5)==3) or false
+        return {origin=own.Position,velocity=velocity,wind=wind,pitch=own.Pitch,bank=own.Bank,heading=own.Heading,
+            name=name,aircraft=own.Name,station=station,code=code,remaining=remaining,selection=selection,tailArmed=tailArmed,arming=arming},'OK'
+    end
+    local function gun(reason)
         local shells=type(payload.Cannon)=='table' and payload.Cannon.shells
         if not finite(shells) or shells<=0 then return nil,'EMPTY' end
-        name='M61A1';station=0;code=2
+        return result('M61A1',0,2,reason)
+    end
+    local name,station,code,selection
+    if remaining==0 then
+        return gun('GUN_ONLY')
     else
         if knob and ((knob>=.10 and knob<=.17) or (knob>=.24 and knob<=.30)) then return nil,'EXCLUDED_WEAPON' end
         station=payload.CurrentStation
@@ -51,7 +60,8 @@ function M.capture(api)
             local bombs=knob and knob>=.87
             local rockets=knob and (knob<=.03 or (knob>=.60 and knob<=.73))
             local bullpup=knob and knob>=.74 and knob<.87
-            if not(bombs or rockets or bullpup) then return nil,'NO_SELECTION' end
+            if not knob then return nil,'SELECTION_UNAVAILABLE' end
+            if not(bombs or rockets or bullpup) then return gun('GUN_NO_SELECTION') end
             station=nil
             local chosen_type,mixed=nil,false
             local details={}
@@ -71,19 +81,16 @@ function M.capture(api)
                 end
             end
             if mixed then return nil,'AMBIGUOUS_SELECTION',table.concat(details,';') end
-            if not chosen_type then return nil,'NO_SELECTION' end
+            if not chosen_type then return gun('GUN_NO_SELECTION') end
             selection=bombs and 'F4_SELECTED_BOMB_STATIONS' or (rockets and 'F4_SELECTED_ROCKET_STATIONS' or 'F4_SELECTED_AG_STATIONS')
         else selection='CURRENT_STATION' end
         local selected=payload.Stations[station];local wt=weapon_type(selected)
-        if not wt or not finite(selected.count) or selected.count<=0 then return nil,'EMPTY_SELECTION' end
+        if not wt or not finite(selected.count) or selected.count<=0 then return gun('GUN_EMPTY_SELECTION') end
         name=call('LoGetNameByType',unpack(wt))
         if type(name)~='string' or name=='' then return nil,'UNKNOWN_WEAPON' end
         if excluded(name) then return nil,'EXCLUDED_WEAPON' end
         code=1
     end
-    local arming=draw(1221)
-    local tailArmed=arming and (math.floor(arming*4+.5)==2 or math.floor(arming*4+.5)==3) or false
-    return {origin=own.Position,velocity=velocity,wind=wind,pitch=own.Pitch,bank=own.Bank,heading=own.Heading,
-        name=name,aircraft=own.Name,station=station,code=code,remaining=remaining,selection=selection,tailArmed=tailArmed,arming=arming},'OK'
+    return result(name,station,code,selection)
 end
 return M

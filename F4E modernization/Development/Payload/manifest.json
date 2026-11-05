@@ -1,5 +1,62 @@
 {
-  "version": "1.0.2",
+  "baseline": [
+    {
+      "path": "Mods/aircraft/F-4E/Cockpit/device_init.lua",
+      "hash": "4661E0894B956087C1EB94EFB6F5F312D3291C6EAC70C5EE9749E790BDB53951"
+    },
+    {
+      "path": "Mods/aircraft/F-4E/Cockpit/clickabledata.lua",
+      "hash": "FD2B87AF27121DA921856A3D06DE3588E0FD6637368AB5C6D4EBF8B720B70083"
+    },
+    {
+      "path": "Mods/aircraft/F-4E/Input/F-4E-Pilot/keyboard/default.lua",
+      "hash": "71D9092070B69DA92D02AF4DD9F127E72C3282FC12CBE776BEF00C3D1A871357"
+    },
+    {
+      "path": "Mods/aircraft/F-4E/Input/F-4E-Pilot/joystick/default.lua",
+      "hash": "9BA2B92ED417A1BD0D7635686FFB6B75BB655125F593FEE154BA5906ED6CC022"
+    },
+    {
+      "path": "Mods/aircraft/F-4E/fxo/DSCG.fxo",
+      "hash": "BC5A828801FF95D2626D035D76BB58B04665606F4A53696E9232FBC3C90616B0"
+    },
+    {
+      "hash": "CE550FCDB73E9BA7C08A3FCF1F8B2F23524FCCA0DD7F69F0996A0306E40E2119",
+      "path": "Mods/aircraft/F-4E/Input/F-4E-Pilot/joystick/CH Fighterstick USB.lua"
+    },
+    {
+      "hash": "DEB971175EF5FBE59ADFBC7054F9824DF9520ECC9C7132DE4560DCE8C7F10F0B",
+      "path": "Mods/aircraft/F-4E/Input/F-4E-Pilot/joystick/Joystick - HOTAS Warthog.lua"
+    },
+    {
+      "hash": "0BF3E1C8A97343CED943C2EB70984F9A66E3A05A3BB4B7B513C68DE257FCCDE1",
+      "path": "Mods/aircraft/F-4E/Input/F-4E-Pilot/joystick/Saitek Pro Flight X-56 Rhino Stick.lua"
+    },
+    {
+      "hash": "AB6CF697C824D31F8FC769FA0066C132C65311476D51C010E6DDDC14FE09D5BD",
+      "path": "Mods/aircraft/F-4E/Input/F-4E-Pilot/joystick/Saitek Pro Flight X-56 Rhino Throttle.lua"
+    },
+    {
+      "hash": "D4DEF0DEEDF355AB8A5AB3AEBCF9FA4922DC524517B90CF0787BEAFEAB3C5966",
+      "path": "Mods/aircraft/F-4E/Input/F-4E-Pilot/joystick/T.16000M.lua"
+    },
+    {
+      "hash": "C5A36A55C13ABADCCC03665AA3902668CDE966BA5C8A37740333B1831F85AED0",
+      "path": "Mods/aircraft/F-4E/Input/F-4E-Pilot/joystick/Throttle - HOTAS Warthog.lua"
+    },
+    {
+      "hash": "386E4DF4FE14F26F5406A6A468F0C3A295DCF454D778F52EAA2425A90153A699",
+      "path": "Mods/aircraft/F-4E/Input/F-4E-Pilot/joystick/VPC WarBRD + MT50.lua"
+    },
+    {
+      "hash": "E5D0541403D35139B00E1DA1615BBA81988313C5827F19A7FFBBA24C5A2E6BCD",
+      "path": "Mods/aircraft/F-4E/Input/F-4E-Pilot/joystick/WINWING JOYSTICK BASE1 + F18 GRIP.lua"
+    },
+    {
+      "hash": "72F53FDC5297A4054CF0433C017C8FE20791EECBA25622562059E308183C8E72",
+      "path": "Mods/aircraft/F-4E/Input/F-4E-Pilot/joystick/WINWING JOYSTICK BASE2 + F18 GRIP.lua"
+    }
+  ],
   "files": [
     {
       "path": "Manager.ps1",
@@ -151,7 +208,7 @@
     },
     {
       "path": "Runtime/SimpleAvionics/HUD/CCIP/inputs.lua",
-      "hash": "91489C873E91225A7D22CEAEE1D388E21CCAFAA2E96C54667BC8667D35416B2A"
+      "hash": "0012A0D748059B0428F8B686480EB250D40C92D29ED51F4498B4D7950C5A2CFD"
     },
     {
       "path": "Runtime/SimpleAvionics/HUD/CCIP/profiles.lua",
@@ -162,63 +219,6 @@
       "hash": "250D1B11645BBA6DC1ECE24CC5BF05DADC453D84913A6C21812F6B3592FB33CF"
     }
   ],
-  "baseline": [
-    {
-      "path": "Mods/aircraft/F-4E/Cockpit/device_init.lua",
-      "hash": "4661E0894B956087C1EB94EFB6F5F312D3291C6EAC70C5EE9749E790BDB53951"
-    },
-    {
-      "path": "Mods/aircraft/F-4E/Cockpit/clickabledata.lua",
-      "hash": "FD2B87AF27121DA921856A3D06DE3588E0FD6637368AB5C6D4EBF8B720B70083"
-    },
-    {
-      "path": "Mods/aircraft/F-4E/Input/F-4E-Pilot/keyboard/default.lua",
-      "hash": "71D9092070B69DA92D02AF4DD9F127E72C3282FC12CBE776BEF00C3D1A871357"
-    },
-    {
-      "path": "Mods/aircraft/F-4E/Input/F-4E-Pilot/joystick/default.lua",
-      "hash": "9BA2B92ED417A1BD0D7635686FFB6B75BB655125F593FEE154BA5906ED6CC022"
-    },
-    {
-      "path": "Mods/aircraft/F-4E/fxo/DSCG.fxo",
-      "hash": "BC5A828801FF95D2626D035D76BB58B04665606F4A53696E9232FBC3C90616B0"
-    },
-    {
-      "hash": "CE550FCDB73E9BA7C08A3FCF1F8B2F23524FCCA0DD7F69F0996A0306E40E2119",
-      "path": "Mods/aircraft/F-4E/Input/F-4E-Pilot/joystick/CH Fighterstick USB.lua"
-    },
-    {
-      "hash": "DEB971175EF5FBE59ADFBC7054F9824DF9520ECC9C7132DE4560DCE8C7F10F0B",
-      "path": "Mods/aircraft/F-4E/Input/F-4E-Pilot/joystick/Joystick - HOTAS Warthog.lua"
-    },
-    {
-      "hash": "0BF3E1C8A97343CED943C2EB70984F9A66E3A05A3BB4B7B513C68DE257FCCDE1",
-      "path": "Mods/aircraft/F-4E/Input/F-4E-Pilot/joystick/Saitek Pro Flight X-56 Rhino Stick.lua"
-    },
-    {
-      "hash": "AB6CF697C824D31F8FC769FA0066C132C65311476D51C010E6DDDC14FE09D5BD",
-      "path": "Mods/aircraft/F-4E/Input/F-4E-Pilot/joystick/Saitek Pro Flight X-56 Rhino Throttle.lua"
-    },
-    {
-      "hash": "D4DEF0DEEDF355AB8A5AB3AEBCF9FA4922DC524517B90CF0787BEAFEAB3C5966",
-      "path": "Mods/aircraft/F-4E/Input/F-4E-Pilot/joystick/T.16000M.lua"
-    },
-    {
-      "hash": "C5A36A55C13ABADCCC03665AA3902668CDE966BA5C8A37740333B1831F85AED0",
-      "path": "Mods/aircraft/F-4E/Input/F-4E-Pilot/joystick/Throttle - HOTAS Warthog.lua"
-    },
-    {
-      "hash": "386E4DF4FE14F26F5406A6A468F0C3A295DCF454D778F52EAA2425A90153A699",
-      "path": "Mods/aircraft/F-4E/Input/F-4E-Pilot/joystick/VPC WarBRD + MT50.lua"
-    },
-    {
-      "hash": "E5D0541403D35139B00E1DA1615BBA81988313C5827F19A7FFBBA24C5A2E6BCD",
-      "path": "Mods/aircraft/F-4E/Input/F-4E-Pilot/joystick/WINWING JOYSTICK BASE1 + F18 GRIP.lua"
-    },
-    {
-      "hash": "72F53FDC5297A4054CF0433C017C8FE20791EECBA25622562059E308183C8E72",
-      "path": "Mods/aircraft/F-4E/Input/F-4E-Pilot/joystick/WINWING JOYSTICK BASE2 + F18 GRIP.lua"
-    }
-  ],
+  "version": "1.0.3",
   "dcsVersion": "2.9.31.29434"
 }

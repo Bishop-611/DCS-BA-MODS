@@ -4,6 +4,10 @@ Experimental radar and HUD modification for the DCS F-4E. **HUD and CCIP are one
 
 [Download the installer](F4E-Modern-Avionics.exe?raw=true) | [SHA-256](SHA256.txt)
 
+## Version 1.0.3
+
+In air-to-ground mode, CCIP falls back to the internal gun when no weapon station is selected, even if other ordnance is still carried. A selected supported weapon takes precedence. Empty cannon, unavailable selection data, and excluded weapon modes do not produce a false gun solution. This update has passed offline tests; live in-game validation is pending.
+
 ## Version 1.0.2
 
 Saved input bindings are editable user data. Normal DCS binding edits no longer fail the installation/status hash check or block restoration. Restore preserves current physical bindings and only maps this package's command IDs back to their native IDs. Newly created device profiles are handled too; deleted binding files are not recreated. Original backups are retained, and files that need command-ID conversion are snapshotted outside the game directory before restoration.
@@ -39,7 +43,7 @@ Restore recovers pre-installation game and Export files. If Export.lua did not o
 - Existing HCU, Cage and NWS binding options are reused. Matching saved bindings are migrated without adding binding options.
 - Native air-to-air radar controls are intercepted; the radar power knob controls the new radar. Relevant air-to-ground controls are retained. AIM-7 interlock is forced OUT.
 - HUD flight symbols, target box, IFF, range, gun lead, heat-seeker reference circle, AIM-7 DLZ and CCIP. HUD power and brightness controls are connected. Automatic uncage is disabled.
-- CCIP uses the selected supported weapon profile. Gun fallback is used only when other ordnance is exhausted. TV/IIR and anti-radiation missiles are excluded. Profiles cover modeled conventional/high-drag bombs, laser-guided bombs, rockets and selected cluster bombs.
+- CCIP uses the selected supported weapon profile. Gun fallback is used when no weapon is selected or other ordnance is exhausted, provided cannon ammunition remains. TV/IIR and anti-radiation missiles are excluded. Profiles cover modeled conventional/high-drag bombs, laser-guided bombs, rockets and selected cluster bombs.
 - Native RWR display, receiver and audio are retained.
 
 ## Files changed
