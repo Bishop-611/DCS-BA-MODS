@@ -1,13 +1,14 @@
+param([string]$BaselineRoot='D:/DCS/DCS World')
 $ErrorActionPreference='Stop'
 $project=Split-Path (Split-Path $PSScriptRoot)
 $test=Join-Path $PSScriptRoot ('Run-'+[guid]::NewGuid().ToString('N'))
 $payload=Join-Path $test 'Extracted'
 $p=Start-Process -FilePath (Join-Path $project 'F4E-Modern-Avionics.exe') -ArgumentList @('--extract-to',('"'+$payload+'"')) -Wait -PassThru
-if($p.ExitCode){throw 'EXE 解包失败'}
+if($p.ExitCode){throw 'EXE extraction failed'}
 $manifest=Get-Content (Join-Path $payload 'manifest.json') -Raw|ConvertFrom-Json
 $game=Join-Path $test 'DCS';$saved=Join-Path $test 'Saved';$state=Join-Path $test 'State'
-foreach($f in $manifest.baseline){$dest=Join-Path $game $f.path;[IO.Directory]::CreateDirectory((Split-Path $dest))|Out-Null;Copy-Item -LiteralPath (Join-Path 'D:/DCS/DCS World' $f.path) -Destination $dest}
-Copy-Item -LiteralPath 'D:/DCS/DCS World/autoupdate.cfg' -Destination $game
+foreach($f in $manifest.baseline){$dest=Join-Path $game $f.path;[IO.Directory]::CreateDirectory((Split-Path $dest))|Out-Null;Copy-Item -LiteralPath (Join-Path $BaselineRoot $f.path) -Destination $dest;if((Get-FileHash $dest).Hash -ne $f.hash){throw 'Test fixture does not match the pinned native baseline.'}}
+[IO.File]::WriteAllText((Join-Path $game 'autoupdate.cfg'),('{"version":"'+$manifest.dcsVersion+'"}'))
 $export=Join-Path $saved 'Scripts/Export.lua';[IO.Directory]::CreateDirectory((Split-Path $export))|Out-Null
 [IO.File]::WriteAllText($export,'-- unrelated export hook remains unchanged')
 $map=(Get-Content (Join-Path $payload 'Runtime/SimpleAvionics/Controls/input-hash-map.tsv') -First 1) -split "`t"
@@ -23,25 +24,25 @@ function Run($action,$expect=0){
 Run Install
 $receipt=Get-ChildItem $state -Recurse -Filter installed.json|Select-Object -First 1
 $receiptHash=(Get-FileHash $receipt.FullName).Hash
-if(-not([IO.File]::ReadAllText($binding).Contains($map[1]))){throw '绑定迁移失败'}
+if(-not([IO.File]::ReadAllText($binding).Contains($map[1]))){throw 'Binding migration failed'}
 $entry=Join-Path $game 'Mods/aircraft/F-4E/Cockpit/device_init.lua'
-if([IO.File]::ReadAllText($entry) -match 'creators\[202\]'){throw '不应安装 Simple RWR'}
+if([IO.File]::ReadAllText($entry) -match 'creators\[202\]'){throw 'Simple RWR must not be installed'}
 Run Install;Run Check
-if((Get-FileHash $receipt.FullName).Hash -ne $receiptHash){throw '重复安装改变了备份状态'}
+if((Get-FileHash $receipt.FullName).Hash -ne $receiptHash){throw 'Repeated installation changed backup state'}
 $installed=[IO.File]::ReadAllBytes($export);[IO.File]::AppendAllText($export,'-- later modification')
 $entryHash=(Get-FileHash $entry).Hash
 Run Restore 1
-if((Get-FileHash $entry).Hash -ne $entryHash){throw '还原预检失败后发生了部分写入'}
+if((Get-FileHash $entry).Hash -ne $entryHash){throw 'Restore preflight failure caused partial writes'}
 [IO.File]::WriteAllBytes($export,$installed)
 Run Restore
-foreach($path in $original.Keys){if((Get-FileHash $path).Hash -ne $original[$path]){throw "完整还原失败: $path"}}
+foreach($path in $original.Keys){if((Get-FileHash $path).Hash -ne $original[$path]){throw "Exact restoration failed: $path"}}
 Run Restore
 # Originally absent Export must disappear after restore.
 Remove-Item -LiteralPath $export
 Run Install;Run Restore
-if(Test-Path $export){throw '原本不存在的 Export 未移除'}
+if(Test-Path $export){throw 'Originally absent Export was not removed'}
 # Wrong version must fail without writing native files.
 [IO.File]::WriteAllText((Join-Path $game 'autoupdate.cfg'),'{"version":"0.0"}')
 Run Install 1
-foreach($f in $manifest.baseline){if((Get-FileHash (Join-Path $game $f.path)).Hash -ne $f.hash){throw '版本拒绝后原文件变化'}}
+foreach($f in $manifest.baseline){if((Get-FileHash (Join-Path $game $f.path)).Hash -ne $f.hash){throw 'Version rejection changed native files'}}
 "PASS: EXE extraction; Windows PowerShell 5.1 install/check/idempotence; binding migration; conflict preflight; exact restore; absent Export; version guard. Test directory: $test"

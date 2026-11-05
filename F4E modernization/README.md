@@ -1,33 +1,48 @@
-# F-4E 雷达与 HUD 安装管理器
+# F4E modernization
 
-双击 `F4E-Modern-Avionics.exe`，确认 DCS 安装根目录和 Saved Games/DCS 目录，退出 DCS 后点击“一键安装”。恢复时使用同一个 EXE、相同路径，点击“一键还原”。“检查状态”核对已安装文件和备份。
+Experimental radar and HUD modification for the DCS F-4E. **HUD and CCIP are one component.** The installer installs or restores radar and HUD together. No RWR modifications are included.
 
-本包整体安装两部分：雷达；HUD（包含 CCIP）。HUD 与 CCIP 不拆分。没有 RWR 试验、RWR 页面替换或声音修改。
+[Download the installer](F4E-Modern-Avionics.exe?raw=true) | [SHA-256](SHA256.txt)
 
-适配当前 DCS **2.9.31.29434** 的 F-4E 文件。安装前同时校验版本与原文件哈希；游戏更新、已有其他座舱修改时拒绝覆盖。修复/更新游戏前请先还原。修复安装后若文件不匹配，需要重新适配，不能直接绕过校验。
+## Installation and restoration
 
-## 安装内容
+1. Download `F4E-Modern-Avionics.exe` and fully exit DCS.
+2. Run the installer and select the DCS installation root and the correct Saved Games/DCS profile.
+3. Click **Install**. Use **Check status** to verify installed files and backups.
+4. To remove the modification, select the same paths and click **Restore**.
 
-- avSimpleRadar 搜索、STT、IFF；Cage 短按切换 5/10/25/50 NM，长按约 0.6 秒切换 ACM。
-- ACM 仅捕获 10 NM 内目标，NWS 断锁并重新获取最近目标；普通模式 NWS 锁定/解锁并自动 IFF。
-- 沿用原来的 HCU、Cage、NWS 键位选项，迁移已有绑定的对应设备编号，不增加键位选项。原雷达空对空控制被屏蔽，电源旋钮控制新雷达，对地相关控制保留。AIM-7 interlock 强制 OUT。
-- HUD 包含飞行符号、目标框、IFF、距离、机炮提前量、格斗弹参考圈、AIM-7 DLZ，以及 CCIP；HUD 开关和亮度旋钮接入。自动解笼关闭。
-- CCIP 依据当前选择的受支持弹药配置计算；没有其他弹药时才回退到机炮。TV/IIR 弹及反辐射弹排除。支持已建立配置的普通/高阻炸弹、激光炸弹、火箭及部分集束弹。
+Supported baseline: **DCS 2.9.31.29434** with matching original F-4E files. The installer checks both the version and native file hashes. Updates or conflicting cockpit modifications stop installation. Restore before repairing or updating DCS. A changed baseline requires adaptation rather than bypassing checks.
 
-## 文件与还原
+Runtime files, original backups and installation records are stored under `%LOCALAPPDATA%\F4ModernAvionics`, outside the game directory. Keep this folder while using the modification. The EXE is self-contained; the Development directory is not needed to install.
 
-运行文件、原始备份、安装记录保存在 `%LOCALAPPDATA%\F4ModernAvionics`，全部位于游戏目录外。游戏中只修改座舱入口、点击路由、原键位配置入口、雷达显示着色器；Saved Games 中追加 CCIP Export 钩子并迁移对应已有绑定。其他 Export 内容保留。EXE 不需要旁边的 Development 目录。
+Restore recovers the complete pre-installation files. If Export.lua did not originally exist, it is removed. Later edits to managed files stop restoration to avoid overwriting them. Backups are retained. Existing unrelated Export hooks are preserved during installation.
 
-还原会恢复安装前的完整文件，原本不存在的 Export.lua 会删除。若安装后文件又被其他程序修改，会停止还原并指出文件，避免覆盖新修改。备份保留，不自动清理。请勿在使用本包期间删除 LocalAppData 下的运行目录。
+## Features and controls
 
-本仓库仅包含整合安装包与必要源码，不包含开发者本机备份、历史日志或个人键位配置。
+- avSimpleRadar search, STT and IFF; no TWS.
+- Short Cage press cycles 5 / 10 / 25 / 50 NM. Holding Cage for about 0.6 seconds enters or exits ACM.
+- ACM acquires within 10 NM. NWS breaks lock and reacquires the nearest target. In normal mode, NWS locks/unlocks and triggers IFF.
+- Existing HCU, Cage and NWS binding options are reused. Matching saved bindings are migrated without adding binding options.
+- Native air-to-air radar controls are intercepted; the radar power knob controls the new radar. Relevant air-to-ground controls are retained. AIM-7 interlock is forced OUT.
+- HUD flight symbols, target box, IFF, range, gun lead, heat-seeker reference circle, AIM-7 DLZ and CCIP. HUD power and brightness controls are connected. Automatic uncage is disabled.
+- CCIP uses the selected supported weapon profile. Gun fallback is used only when other ordnance is exhausted. TV/IIR and anti-radiation missiles are excluded. Profiles cover modeled conventional/high-drag bombs, laser-guided bombs, rockets and selected cluster bombs.
+- Native RWR display, receiver and audio are retained.
 
-## 精度与验证范围
+## Files changed
 
-这是本机试验整合版。DLZ 是自行计算的估算包线，未获得原生 F-15/F-16 制导算法；显示未加 EST 字样。CCIP 使用各弹药的已建模参数，并非调用原生封装解算器。激光炸弹显示未制导参考落点；集束弹显示未开舱母体参考落点，不计算子弹药散布。Zuni 推力、燃烧时间和部分阻力参数仍待实投校准；没有配置的武器不借用通用参数。
+The installer modifies cockpit entry and clickable routing, existing input-profile entry points and the radar display shader. It appends the CCIP Export hook in Saved Games and migrates matching existing input bindings. Original files are backed up before target writes. Personal bindings, developer backups and historical logs are not included in this repository.
 
-已通过：37 个 Lua 文件语法检查；EXE 内嵌源解包；Windows PowerShell 5.1 下隔离安装、检查、重复安装、绑定迁移、后续文件改动拦截、逐字节还原、原本无 Export 情况及版本拒绝测试。**整合后的 EXE 尚未在实际 DCS 中重新安装验证。**
+## Accuracy and validation
 
-## 源码
+This is an experimental integration. DLZ uses a custom estimated envelope, not the closed native F-15/F-16 guidance algorithm; the display does not carry an EST label. CCIP uses modeled weapon parameters rather than a native encapsulated solver. Laser-guided bombs show an unguided reference impact point. Cluster bombs show the unopened parent-body reference point, not submunition dispersion. Zuni thrust, burn time and some drag parameters require live calibration. Unsupported weapons do not borrow a generic profile.
 
-`Development/Payload` 为冻结安装源，`Development/App/Manager.cs` 为界面，`Development/Build.ps1` 编译 EXE，`Development/Tests/Installer.ps1` 在隔离目录测试。构建脚本仅适用于已经还原且核对过的本机游戏基线，不应从已改装游戏重新采集“原始”哈希。
+Passed offline checks: syntax for 37 Lua files; EXE payload extraction; isolated Windows PowerShell 5.1 installation, status check, repeated installation, binding migration, later-edit protection, byte-for-byte restoration, initially absent Export.lua, and version rejection. **The integrated installer has not yet been reinstalled and validated in DCS.**
+
+## Source and build
+
+- `Development/Payload`: frozen installation source and pinned native baseline hashes.
+- `Development/App/Manager.cs`: English Windows Forms interface.
+- `Development/Build.ps1`: creates the embedded payload and compiles the EXE with the .NET Framework C# compiler. It retains the pinned native baseline hashes rather than recapturing a potentially modified game installation.
+- `Development/Tests/Installer.ps1`: installer checks in an isolated directory. Use `-BaselineRoot` to select a directory containing verified original fixture files; the default is `D:/DCS/DCS World`. Fixture hashes are checked before testing.
+
+Do not replace original baseline hashes with hashes from a modified installation. The compiled installer allows users to choose their own installation paths.
