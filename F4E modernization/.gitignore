@@ -7,3 +7,6 @@ ManagerData/
 *.log
 paths.txt
 installed.json
+
+Development/Tests/NativeFixture/
+Development/Tests/ProfileRun/

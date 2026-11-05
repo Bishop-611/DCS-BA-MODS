@@ -19,12 +19,47 @@
     {
       "path": "Mods/aircraft/F-4E/fxo/DSCG.fxo",
       "hash": "BC5A828801FF95D2626D035D76BB58B04665606F4A53696E9232FBC3C90616B0"
+    },
+    {
+      "hash": "CE550FCDB73E9BA7C08A3FCF1F8B2F23524FCCA0DD7F69F0996A0306E40E2119",
+      "path": "Mods/aircraft/F-4E/Input/F-4E-Pilot/joystick/CH Fighterstick USB.lua"
+    },
+    {
+      "hash": "DEB971175EF5FBE59ADFBC7054F9824DF9520ECC9C7132DE4560DCE8C7F10F0B",
+      "path": "Mods/aircraft/F-4E/Input/F-4E-Pilot/joystick/Joystick - HOTAS Warthog.lua"
+    },
+    {
+      "hash": "0BF3E1C8A97343CED943C2EB70984F9A66E3A05A3BB4B7B513C68DE257FCCDE1",
+      "path": "Mods/aircraft/F-4E/Input/F-4E-Pilot/joystick/Saitek Pro Flight X-56 Rhino Stick.lua"
+    },
+    {
+      "hash": "AB6CF697C824D31F8FC769FA0066C132C65311476D51C010E6DDDC14FE09D5BD",
+      "path": "Mods/aircraft/F-4E/Input/F-4E-Pilot/joystick/Saitek Pro Flight X-56 Rhino Throttle.lua"
+    },
+    {
+      "hash": "D4DEF0DEEDF355AB8A5AB3AEBCF9FA4922DC524517B90CF0787BEAFEAB3C5966",
+      "path": "Mods/aircraft/F-4E/Input/F-4E-Pilot/joystick/T.16000M.lua"
+    },
+    {
+      "hash": "C5A36A55C13ABADCCC03665AA3902668CDE966BA5C8A37740333B1831F85AED0",
+      "path": "Mods/aircraft/F-4E/Input/F-4E-Pilot/joystick/Throttle - HOTAS Warthog.lua"
+    },
+    {
+      "hash": "386E4DF4FE14F26F5406A6A468F0C3A295DCF454D778F52EAA2425A90153A699",
+      "path": "Mods/aircraft/F-4E/Input/F-4E-Pilot/joystick/VPC WarBRD + MT50.lua"
+    },
+    {
+      "hash": "E5D0541403D35139B00E1DA1615BBA81988313C5827F19A7FFBBA24C5A2E6BCD",
+      "path": "Mods/aircraft/F-4E/Input/F-4E-Pilot/joystick/WINWING JOYSTICK BASE1 + F18 GRIP.lua"
+    },
+    {
+      "hash": "72F53FDC5297A4054CF0433C017C8FE20791EECBA25622562059E308183C8E72",
+      "path": "Mods/aircraft/F-4E/Input/F-4E-Pilot/joystick/WINWING JOYSTICK BASE2 + F18 GRIP.lua"
     }
   ],
-  "version": "1.0.0",
   "files": [
     {
-      "hash": "02C3AE19DA4886704077257A895F5C78534BA053DC2451345DBE8C4F2A1FEFF3",
+      "hash": "476CC4DA8F1264A2B516B4C46E3FE41092554C8B89C6B1FEB9B708C01F475DD2",
       "path": "Manager.ps1"
     },
     {
@@ -184,5 +219,6 @@
       "path": "Runtime/SimpleAvionics/HUD/CCIP/solver.lua"
     }
   ],
+  "version": "1.0.1",
   "dcsVersion": "2.9.31.29434"
 }

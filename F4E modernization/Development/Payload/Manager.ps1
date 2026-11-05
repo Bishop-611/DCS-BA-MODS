@@ -52,6 +52,7 @@ if($Action -eq 'Restore'){
 }
 if(Test-Path -LiteralPath $statePath){
  $state=Get-Content $statePath -Raw|ConvertFrom-Json;CheckEntries $state
+ if($state.version -ne $manifest.version){throw 'A different package version is installed. Click Restore, then Install to apply this version.'}
  if($state.status -eq 'installed'){'Already installed and verified; no reinstall needed.';return}
  throw 'An incomplete installation was detected. Click Restore first.'
 }
@@ -101,10 +102,10 @@ creators[205] = {"avLuaDevice", [[$luaRoot/HUD/device.lua]]}
 Stage $entry $text $null
 $path=Join-Path $cockpit 'clickabledata.lua'
 Stage $path ([IO.File]::ReadAllText($path)+"`n-- F4_SIMPLE_CLICKABLE_ROUTER`ndofile([[$luaRoot/Controls/clickable-router.lua]])(elements)`n") $null
-foreach($kind in @('keyboard','joystick')){
- $path=Join-Path $DcsRoot "Mods/aircraft/F-4E/Input/F-4E-Pilot/$kind/default.lua"
+foreach($inputFile in @($manifest.baseline | Where-Object {$_.path -like 'Mods/aircraft/F-4E/Input/F-4E-Pilot/*/*.lua'})){
+ $path=Join-Path $DcsRoot $inputFile.path
  $text=[IO.File]::ReadAllText($path)
- if([regex]::Matches($text,'(?m)^return res\s*$').Count -ne 1){throw "Unsupported $kind input file format."}
+ if([regex]::Matches($text,'(?m)^return res\s*$').Count -ne 1){throw "Unsupported input file format: $($inputFile.path)"}
  Stage $path ([regex]::Replace($text,'(?m)^return res\s*$',"return dofile([[$luaRoot/Controls/route-profile.lua]])(res)")) $null
 }
 Stage (Join-Path $DcsRoot 'Mods/aircraft/F-4E/fxo/DSCG.fxo') $null (Join-Path $runtime 'DSCG.fxo')

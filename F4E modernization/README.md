@@ -4,6 +4,14 @@ Experimental radar and HUD modification for the DCS F-4E. **HUD and CCIP are one
 
 [Download the installer](F4E-Modern-Avionics.exe?raw=true) | [SHA-256](SHA256.txt)
 
+## Version 1.0.1
+
+Fixes NWS routing in device-specific joystick profiles (including HOTAS Warthog), which could override the routed command and split the same control into separate keyboard/joystick rows. All 11 supported input profiles now use the same routed NWS button command without changing native names or default physical bindings. Cage and other routed controls also pass through the final device-profile router.
+
+For a physical joystick button, bind **Nose Gear Steering / Auto Acquisition Button**, without the **[SimPit]** prefix. The native **[SimPit] ... (Button)** entry is an axis-style hardware interface and is retained for compatibility.
+
+To update from 1.0.0, fully exit DCS, click **Restore**, then **Install** with this installer. Earlier backups remain outside the game directory. Live in-game validation of this input fix is pending; isolated profile and installer checks passed.
+
 ## Installation and restoration
 
 1. Download `F4E-Modern-Avionics.exe` and fully exit DCS.
