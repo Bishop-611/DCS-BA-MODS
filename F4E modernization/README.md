@@ -4,6 +4,12 @@ Experimental radar and HUD modification for the DCS F-4E. **HUD and CCIP are one
 
 [Download the installer](F4E-Modern-Avionics.exe?raw=true) | [SHA-256](SHA256.txt)
 
+## Version 1.0.2
+
+Saved input bindings are editable user data. Normal DCS binding edits no longer fail the installation/status hash check or block restoration. Restore preserves current physical bindings and only maps this package's command IDs back to their native IDs. Newly created device profiles are handled too; deleted binding files are not recreated. Original backups are retained, and files that need command-ID conversion are snapshotted outside the game directory before restoration.
+
+This installer can restore existing 1.0.0 and 1.0.1 installations. Exit DCS, click **Restore**, then **Install** to update. The NWS fix from 1.0.1 is included. Conflicting native and routed entries in the same file still stop before changes rather than silently discarding either binding. Game files and Export.lua retain their modification protection.
+
 ## Version 1.0.1
 
 Fixes NWS routing in device-specific joystick profiles (including HOTAS Warthog), which could override the routed command and split the same control into separate keyboard/joystick rows. All 11 supported input profiles now use the same routed NWS button command without changing native names or default physical bindings. Cage and other routed controls also pass through the final device-profile router.
@@ -23,7 +29,7 @@ Supported baseline: **DCS 2.9.31.29434** with matching original F-4E files. The 
 
 Runtime files, original backups and installation records are stored under `%LOCALAPPDATA%\F4ModernAvionics`, outside the game directory. Keep this folder while using the modification. The EXE is self-contained; the Development directory is not needed to install.
 
-Restore recovers the complete pre-installation files. If Export.lua did not originally exist, it is removed. Later edits to managed files stop restoration to avoid overwriting them. Backups are retained. Existing unrelated Export hooks are preserved during installation.
+Restore recovers pre-installation game and Export files. If Export.lua did not originally exist, it is removed. Later edits to those managed files stop restoration to avoid overwriting them. Saved input bindings are preserved as described above. Backups are retained. Existing unrelated Export hooks are preserved during installation.
 
 ## Features and controls
 
@@ -44,7 +50,7 @@ The installer modifies cockpit entry and clickable routing, existing input-profi
 
 This is an experimental integration. DLZ uses a custom estimated envelope, not the closed native F-15/F-16 guidance algorithm; the display does not carry an EST label. CCIP uses modeled weapon parameters rather than a native encapsulated solver. Laser-guided bombs show an unguided reference impact point. Cluster bombs show the unopened parent-body reference point, not submunition dispersion. Zuni thrust, burn time and some drag parameters require live calibration. Unsupported weapons do not borrow a generic profile.
 
-Passed offline checks: syntax for 37 Lua files; EXE payload extraction; isolated Windows PowerShell 5.1 installation, status check, repeated installation, binding migration, later-edit protection, byte-for-byte restoration, initially absent Export.lua, and version rejection. **The integrated installer has not yet been reinstalled and validated in DCS.**
+Passed offline checks: syntax for 37 Lua files; all 11 native keyboard/joystick profile routes; EXE payload extraction; isolated Windows PowerShell 5.1 installation, status check, repeated installation, binding migration, edited/new/deleted input profiles, restoration from an older receipt, non-binding later-edit protection, byte-for-byte restoration of unchanged files, initially absent Export.lua, and version rejection. **The integrated installer has not yet been reinstalled and validated in DCS.**
 
 ## Source and build
 

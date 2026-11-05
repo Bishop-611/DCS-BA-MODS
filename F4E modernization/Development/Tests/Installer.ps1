@@ -37,6 +37,24 @@ if((Get-FileHash $entry).Hash -ne $entryHash){throw 'Restore preflight failure c
 Run Restore
 foreach($path in $original.Keys){if((Get-FileHash $path).Hash -ne $original[$path]){throw "Exact restoration failed: $path"}}
 Run Restore
+# Editable bindings: preserve later edits and newly created device profiles.
+Run Install
+$changed=[IO.File]::ReadAllText($binding).Replace('original option','edited option')+"`n-- User binding edit after installation"
+[IO.File]::WriteAllText($binding,$changed)
+$added=Join-Path (Split-Path $binding) 'new-device.diff.lua'
+$newText='return {["'+$map[1]+'"]={name="new binding",added={{key="JOY_BTN9"}}}}'
+[IO.File]::WriteAllText($added,$newText)
+# Restoration must also work for an older receipt.
+$active=Get-ChildItem $state -Recurse -Filter installed.json|Select-Object -First 1
+$receiptData=Get-Content $active.FullName -Raw|ConvertFrom-Json;$receiptData.version='1.0.0'
+$receiptData|ConvertTo-Json -Depth 12|Set-Content $active.FullName
+Run Check;Run Restore
+if([IO.File]::ReadAllText($binding) -ne $changed.Replace('["'+$map[1]+'"]','["'+$map[0]+'"]')){throw 'Later binding edits were lost'}
+if([IO.File]::ReadAllText($added) -ne $newText.Replace('["'+$map[1]+'"]','["'+$map[0]+'"]')){throw 'New device bindings were not restored to native IDs'}
+Run Install
+Remove-Item -LiteralPath $binding
+Run Restore
+if(Test-Path $binding){throw 'User-deleted binding file was resurrected'}
 # Originally absent Export must disappear after restore.
 Remove-Item -LiteralPath $export
 Run Install;Run Restore
@@ -45,4 +63,4 @@ if(Test-Path $export){throw 'Originally absent Export was not removed'}
 [IO.File]::WriteAllText((Join-Path $game 'autoupdate.cfg'),'{"version":"0.0"}')
 Run Install 1
 foreach($f in $manifest.baseline){if((Get-FileHash (Join-Path $game $f.path)).Hash -ne $f.hash){throw 'Version rejection changed native files'}}
-"PASS: EXE extraction; Windows PowerShell 5.1 install/check/idempotence; binding migration; conflict preflight; exact restore; absent Export; version guard. Test directory: $test"
+"PASS: EXE extraction; Windows PowerShell 5.1 install/check/idempotence; binding migration; editable/new/deleted bindings; older receipt restore; non-binding conflict preflight; exact restore; absent Export; version guard. Test directory: $test"

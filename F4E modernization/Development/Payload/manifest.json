@@ -1,4 +1,167 @@
 {
+  "version": "1.0.2",
+  "files": [
+    {
+      "path": "Manager.ps1",
+      "hash": "86F73026E928D203E30AE4E76D2D4DAB81961B34751F892B6B1758F4E7E843F0"
+    },
+    {
+      "path": "Runtime/SimpleAvionics/display-data.lua",
+      "hash": "2DF459E13A80E9085A5EDA0104672D98A2D7D29CA131D4B3A43612DCC45E2EC1"
+    },
+    {
+      "path": "Runtime/SimpleAvionics/display-init.lua",
+      "hash": "F2532EC7E90039919C99815B17812D7695843E6D8072F4894FCCA7EDBA54D0B5"
+    },
+    {
+      "path": "Runtime/SimpleAvionics/display-page.lua",
+      "hash": "899DFC8BB0B24A30F3045A1C408FF13C484252F531CBEB93F704B531285EF750"
+    },
+    {
+      "path": "Runtime/SimpleAvionics/DSCG.fxo",
+      "hash": "5689951021564C150942435FAB83E314DEA1579CF9556A5120D76DDFBD7294E2"
+    },
+    {
+      "path": "Runtime/SimpleAvionics/electric.lua",
+      "hash": "E41A14E1FC058D76D2FA2C506E5D3D11CDF938402CF1D0477F712770E71BE39E"
+    },
+    {
+      "path": "Runtime/SimpleAvionics/inspect-weapon-interfaces.lua",
+      "hash": "3D6F3E872C80582B7DD88C80D9C633764618BBBACD7C108BCF3B41405FF6C256"
+    },
+    {
+      "path": "Runtime/SimpleAvionics/radar-contacts.lua",
+      "hash": "E3473BB614FCC1B7ECFB6106EBAFF2D698564C89187DA92C8AD9C9A67D55C83F"
+    },
+    {
+      "path": "Runtime/SimpleAvionics/radar-profile.lua",
+      "hash": "B31B29BD302A9052FE8143A7882875810012B89539150ECDB9DBCB4BEB5AC40D"
+    },
+    {
+      "path": "Runtime/SimpleAvionics/radar-route.lua",
+      "hash": "394FC340DFF3DD2A6EFA08CC04DAC9BDC6C8C6832C1864AB39C745DD52069C43"
+    },
+    {
+      "path": "Runtime/SimpleAvionics/radar.lua",
+      "hash": "EE5D92EEB2DAAE399C5EED89CB67E9F854CFC68696CB22725039ECB886A1FF83"
+    },
+    {
+      "path": "Runtime/SimpleAvionics/Controls/block-original-radar.lua",
+      "hash": "22CE439AAD9B1262D68A2EFE4C70A9F5BE585765EF57B4DDA1D0647852B455D7"
+    },
+    {
+      "path": "Runtime/SimpleAvionics/Controls/clickable-router.lua",
+      "hash": "41F867C0B417B879EC4D9F6A6C3EAE0F8E1D6A19EB1447FD80B31980D440476C"
+    },
+    {
+      "path": "Runtime/SimpleAvionics/Controls/display-cockpit-init.lua",
+      "hash": "E901158EBCE4B844683B71916EA2C7DA6BEF60FB823B8BB2A6EDD50CBCEFCA49"
+    },
+    {
+      "path": "Runtime/SimpleAvionics/Controls/display-cockpit-page.lua",
+      "hash": "B08A113F548EF5058D0CF3650BD22F788F1E1B6EA11BCBD33A336CAC03B359E7"
+    },
+    {
+      "path": "Runtime/SimpleAvionics/Controls/force-interlock.lua",
+      "hash": "53930EE9CE40E55BBE956510F2C80662656BD74863DDC038AE70928858610409"
+    },
+    {
+      "path": "Runtime/SimpleAvionics/Controls/input-device.lua",
+      "hash": "7C25C50271A1412306483DFE48B768039B3F96265B61569814AF5B37A396CF03"
+    },
+    {
+      "path": "Runtime/SimpleAvionics/Controls/input-hash-map.tsv",
+      "hash": "629E6081B41E67BB6C003DAD8328575621DE2214C6B9A87D5D22263C2399405C"
+    },
+    {
+      "path": "Runtime/SimpleAvionics/Controls/input-map.lua",
+      "hash": "18E4F8086B54637367469054B186F4253B8441FFC433B404CC97BBE38E1F7265"
+    },
+    {
+      "path": "Runtime/SimpleAvionics/Controls/manual-controller.lua",
+      "hash": "94A8AC723639D68B7F68F5EAD818E470F345A17836A408CCA8EBC36427FD9464"
+    },
+    {
+      "path": "Runtime/SimpleAvionics/Controls/radar-manual.lua",
+      "hash": "63455730F581ED69545DBE4AADDE4C5FEA3A22F8501AA971C90CCD43EFFEE5D5"
+    },
+    {
+      "path": "Runtime/SimpleAvionics/Controls/route-profile.lua",
+      "hash": "ABD36108D000F4924079456E38E3AC169926332A1D362F0C1E0EF85DC95BF9C5"
+    },
+    {
+      "path": "Runtime/SimpleAvionics/Controls/select-return.lua",
+      "hash": "7F7D3D3153EC760F760951B609DA16F5AD3C0541CDA64A822DC4136A9EDCDAB8"
+    },
+    {
+      "path": "Runtime/SimpleAvionics/HUD/aim7-profile.lua",
+      "hash": "F9ACB68F1B0C476C0CBD1D5577E25C59E822B6D3994822EF026F37D108BF9F2D"
+    },
+    {
+      "path": "Runtime/SimpleAvionics/HUD/alignment.lua",
+      "hash": "8BB37F814CA25100197C1EA14908FD7FD5D6D35535FCC94B4EB372A4A6ED358B"
+    },
+    {
+      "path": "Runtime/SimpleAvionics/HUD/device.lua",
+      "hash": "FC3FF2230918F793EB35729CC6D8DE9402CAC060A84B41495994F0916DFB454B"
+    },
+    {
+      "path": "Runtime/SimpleAvionics/HUD/dlz-device.lua",
+      "hash": "A4ADE09009D905A250AA9946F0FD133D4C83CFB0809A914F3E6846359E56B47B"
+    },
+    {
+      "path": "Runtime/SimpleAvionics/HUD/dlz-model.lua",
+      "hash": "C650C342DDDD6A4D14076A6FFBD6B868DB4144BA49D2FF6A39D29DF6088731D8"
+    },
+    {
+      "path": "Runtime/SimpleAvionics/HUD/flight_math.lua",
+      "hash": "03486C314D7F9C53AB84DB1EB604344C72C8963A644C5DA67314B5D9101DFC44"
+    },
+    {
+      "path": "Runtime/SimpleAvionics/HUD/gun_math.lua",
+      "hash": "D23FC08289FA434323B20E135049ADA5BA8BE943A18069685D5F6D58787DE43E"
+    },
+    {
+      "path": "Runtime/SimpleAvionics/HUD/gun-device.lua",
+      "hash": "08DF050925D3D9015194F2926709F46D4F22842AF92835041F4902D148FB9FA2"
+    },
+    {
+      "path": "Runtime/SimpleAvionics/HUD/heat-auto-uncage.lua",
+      "hash": "D7CCD0AD893765AFE81F691685A0AD3C075A12589B02B777E9B936BB425796CE"
+    },
+    {
+      "path": "Runtime/SimpleAvionics/HUD/init.lua",
+      "hash": "A4A077B80461978147767CEE7BF347B622F1D89CAD0D098F188091B42DFE1BA8"
+    },
+    {
+      "path": "Runtime/SimpleAvionics/HUD/page.lua",
+      "hash": "DAAFA795981F51C591A33D34E613B6D23D371943F237C8E71992A14DCB59DDA7"
+    },
+    {
+      "path": "Runtime/SimpleAvionics/HUD/weapon_math.lua",
+      "hash": "89F790DFFB66C3BCE499CC5D011D2039685B3573AD93995200283EEE008B350D"
+    },
+    {
+      "path": "Runtime/SimpleAvionics/HUD/CCIP/device.lua",
+      "hash": "888B304F36D9B618C89775A8D9AE63013B5041F8D990EBA83B49516C208EE508"
+    },
+    {
+      "path": "Runtime/SimpleAvionics/HUD/CCIP/export.lua",
+      "hash": "F1E1DD84BFE0986AF75D2560A4C74060A320624F2FC50C069AF642D9C8B07653"
+    },
+    {
+      "path": "Runtime/SimpleAvionics/HUD/CCIP/inputs.lua",
+      "hash": "91489C873E91225A7D22CEAEE1D388E21CCAFAA2E96C54667BC8667D35416B2A"
+    },
+    {
+      "path": "Runtime/SimpleAvionics/HUD/CCIP/profiles.lua",
+      "hash": "C39D49780C8FBFE1796FA8EE8422BAD83D97CE6301F7AF222E837A76EBA999C0"
+    },
+    {
+      "path": "Runtime/SimpleAvionics/HUD/CCIP/solver.lua",
+      "hash": "250D1B11645BBA6DC1ECE24CC5BF05DADC453D84913A6C21812F6B3592FB33CF"
+    }
+  ],
   "baseline": [
     {
       "path": "Mods/aircraft/F-4E/Cockpit/device_init.lua",
@@ -57,168 +220,5 @@
       "path": "Mods/aircraft/F-4E/Input/F-4E-Pilot/joystick/WINWING JOYSTICK BASE2 + F18 GRIP.lua"
     }
   ],
-  "files": [
-    {
-      "hash": "476CC4DA8F1264A2B516B4C46E3FE41092554C8B89C6B1FEB9B708C01F475DD2",
-      "path": "Manager.ps1"
-    },
-    {
-      "hash": "2DF459E13A80E9085A5EDA0104672D98A2D7D29CA131D4B3A43612DCC45E2EC1",
-      "path": "Runtime/SimpleAvionics/display-data.lua"
-    },
-    {
-      "hash": "F2532EC7E90039919C99815B17812D7695843E6D8072F4894FCCA7EDBA54D0B5",
-      "path": "Runtime/SimpleAvionics/display-init.lua"
-    },
-    {
-      "hash": "899DFC8BB0B24A30F3045A1C408FF13C484252F531CBEB93F704B531285EF750",
-      "path": "Runtime/SimpleAvionics/display-page.lua"
-    },
-    {
-      "hash": "5689951021564C150942435FAB83E314DEA1579CF9556A5120D76DDFBD7294E2",
-      "path": "Runtime/SimpleAvionics/DSCG.fxo"
-    },
-    {
-      "hash": "E41A14E1FC058D76D2FA2C506E5D3D11CDF938402CF1D0477F712770E71BE39E",
-      "path": "Runtime/SimpleAvionics/electric.lua"
-    },
-    {
-      "hash": "3D6F3E872C80582B7DD88C80D9C633764618BBBACD7C108BCF3B41405FF6C256",
-      "path": "Runtime/SimpleAvionics/inspect-weapon-interfaces.lua"
-    },
-    {
-      "hash": "E3473BB614FCC1B7ECFB6106EBAFF2D698564C89187DA92C8AD9C9A67D55C83F",
-      "path": "Runtime/SimpleAvionics/radar-contacts.lua"
-    },
-    {
-      "hash": "B31B29BD302A9052FE8143A7882875810012B89539150ECDB9DBCB4BEB5AC40D",
-      "path": "Runtime/SimpleAvionics/radar-profile.lua"
-    },
-    {
-      "hash": "394FC340DFF3DD2A6EFA08CC04DAC9BDC6C8C6832C1864AB39C745DD52069C43",
-      "path": "Runtime/SimpleAvionics/radar-route.lua"
-    },
-    {
-      "hash": "EE5D92EEB2DAAE399C5EED89CB67E9F854CFC68696CB22725039ECB886A1FF83",
-      "path": "Runtime/SimpleAvionics/radar.lua"
-    },
-    {
-      "hash": "22CE439AAD9B1262D68A2EFE4C70A9F5BE585765EF57B4DDA1D0647852B455D7",
-      "path": "Runtime/SimpleAvionics/Controls/block-original-radar.lua"
-    },
-    {
-      "hash": "41F867C0B417B879EC4D9F6A6C3EAE0F8E1D6A19EB1447FD80B31980D440476C",
-      "path": "Runtime/SimpleAvionics/Controls/clickable-router.lua"
-    },
-    {
-      "hash": "E901158EBCE4B844683B71916EA2C7DA6BEF60FB823B8BB2A6EDD50CBCEFCA49",
-      "path": "Runtime/SimpleAvionics/Controls/display-cockpit-init.lua"
-    },
-    {
-      "hash": "B08A113F548EF5058D0CF3650BD22F788F1E1B6EA11BCBD33A336CAC03B359E7",
-      "path": "Runtime/SimpleAvionics/Controls/display-cockpit-page.lua"
-    },
-    {
-      "hash": "53930EE9CE40E55BBE956510F2C80662656BD74863DDC038AE70928858610409",
-      "path": "Runtime/SimpleAvionics/Controls/force-interlock.lua"
-    },
-    {
-      "hash": "7C25C50271A1412306483DFE48B768039B3F96265B61569814AF5B37A396CF03",
-      "path": "Runtime/SimpleAvionics/Controls/input-device.lua"
-    },
-    {
-      "hash": "629E6081B41E67BB6C003DAD8328575621DE2214C6B9A87D5D22263C2399405C",
-      "path": "Runtime/SimpleAvionics/Controls/input-hash-map.tsv"
-    },
-    {
-      "hash": "18E4F8086B54637367469054B186F4253B8441FFC433B404CC97BBE38E1F7265",
-      "path": "Runtime/SimpleAvionics/Controls/input-map.lua"
-    },
-    {
-      "hash": "94A8AC723639D68B7F68F5EAD818E470F345A17836A408CCA8EBC36427FD9464",
-      "path": "Runtime/SimpleAvionics/Controls/manual-controller.lua"
-    },
-    {
-      "hash": "63455730F581ED69545DBE4AADDE4C5FEA3A22F8501AA971C90CCD43EFFEE5D5",
-      "path": "Runtime/SimpleAvionics/Controls/radar-manual.lua"
-    },
-    {
-      "hash": "ABD36108D000F4924079456E38E3AC169926332A1D362F0C1E0EF85DC95BF9C5",
-      "path": "Runtime/SimpleAvionics/Controls/route-profile.lua"
-    },
-    {
-      "hash": "7F7D3D3153EC760F760951B609DA16F5AD3C0541CDA64A822DC4136A9EDCDAB8",
-      "path": "Runtime/SimpleAvionics/Controls/select-return.lua"
-    },
-    {
-      "hash": "F9ACB68F1B0C476C0CBD1D5577E25C59E822B6D3994822EF026F37D108BF9F2D",
-      "path": "Runtime/SimpleAvionics/HUD/aim7-profile.lua"
-    },
-    {
-      "hash": "8BB37F814CA25100197C1EA14908FD7FD5D6D35535FCC94B4EB372A4A6ED358B",
-      "path": "Runtime/SimpleAvionics/HUD/alignment.lua"
-    },
-    {
-      "hash": "FC3FF2230918F793EB35729CC6D8DE9402CAC060A84B41495994F0916DFB454B",
-      "path": "Runtime/SimpleAvionics/HUD/device.lua"
-    },
-    {
-      "hash": "A4ADE09009D905A250AA9946F0FD133D4C83CFB0809A914F3E6846359E56B47B",
-      "path": "Runtime/SimpleAvionics/HUD/dlz-device.lua"
-    },
-    {
-      "hash": "C650C342DDDD6A4D14076A6FFBD6B868DB4144BA49D2FF6A39D29DF6088731D8",
-      "path": "Runtime/SimpleAvionics/HUD/dlz-model.lua"
-    },
-    {
-      "hash": "03486C314D7F9C53AB84DB1EB604344C72C8963A644C5DA67314B5D9101DFC44",
-      "path": "Runtime/SimpleAvionics/HUD/flight_math.lua"
-    },
-    {
-      "hash": "D23FC08289FA434323B20E135049ADA5BA8BE943A18069685D5F6D58787DE43E",
-      "path": "Runtime/SimpleAvionics/HUD/gun_math.lua"
-    },
-    {
-      "hash": "08DF050925D3D9015194F2926709F46D4F22842AF92835041F4902D148FB9FA2",
-      "path": "Runtime/SimpleAvionics/HUD/gun-device.lua"
-    },
-    {
-      "hash": "D7CCD0AD893765AFE81F691685A0AD3C075A12589B02B777E9B936BB425796CE",
-      "path": "Runtime/SimpleAvionics/HUD/heat-auto-uncage.lua"
-    },
-    {
-      "hash": "A4A077B80461978147767CEE7BF347B622F1D89CAD0D098F188091B42DFE1BA8",
-      "path": "Runtime/SimpleAvionics/HUD/init.lua"
-    },
-    {
-      "hash": "DAAFA795981F51C591A33D34E613B6D23D371943F237C8E71992A14DCB59DDA7",
-      "path": "Runtime/SimpleAvionics/HUD/page.lua"
-    },
-    {
-      "hash": "89F790DFFB66C3BCE499CC5D011D2039685B3573AD93995200283EEE008B350D",
-      "path": "Runtime/SimpleAvionics/HUD/weapon_math.lua"
-    },
-    {
-      "hash": "888B304F36D9B618C89775A8D9AE63013B5041F8D990EBA83B49516C208EE508",
-      "path": "Runtime/SimpleAvionics/HUD/CCIP/device.lua"
-    },
-    {
-      "hash": "F1E1DD84BFE0986AF75D2560A4C74060A320624F2FC50C069AF642D9C8B07653",
-      "path": "Runtime/SimpleAvionics/HUD/CCIP/export.lua"
-    },
-    {
-      "hash": "91489C873E91225A7D22CEAEE1D388E21CCAFAA2E96C54667BC8667D35416B2A",
-      "path": "Runtime/SimpleAvionics/HUD/CCIP/inputs.lua"
-    },
-    {
-      "hash": "C39D49780C8FBFE1796FA8EE8422BAD83D97CE6301F7AF222E837A76EBA999C0",
-      "path": "Runtime/SimpleAvionics/HUD/CCIP/profiles.lua"
-    },
-    {
-      "hash": "250D1B11645BBA6DC1ECE24CC5BF05DADC453D84913A6C21812F6B3592FB33CF",
-      "path": "Runtime/SimpleAvionics/HUD/CCIP/solver.lua"
-    }
-  ],
-  "version": "1.0.1",
   "dcsVersion": "2.9.31.29434"
 }

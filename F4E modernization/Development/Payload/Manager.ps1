@@ -17,12 +17,48 @@ $key=([BitConverter]::ToString($sha.ComputeHash([Text.Encoding]::UTF8.GetBytes((
 $sha.Dispose()
 $installHome=Join-Path $StateHome $key;$statePath=Join-Path $installHome 'installed.json'
 $manifest=Get-Content -LiteralPath (Join-Path $PSScriptRoot 'manifest.json') -Raw|ConvertFrom-Json
+function IsBinding($path){
+ $p=Full $path
+ return $p.StartsWith((Join-Path $SavedGames 'Config/Input/F-4E-45MC')+'\',[StringComparison]::OrdinalIgnoreCase) -and $p.EndsWith('.diff.lua',[StringComparison]::OrdinalIgnoreCase)
+}
+function PrepareBindingRestore($state){
+ $plans=New-Object 'System.Collections.Generic.List[object]'
+ $inputRoot=Join-Path $SavedGames 'Config/Input/F-4E-45MC'
+ if(-not(Test-Path -LiteralPath $inputRoot)){return @()}
+ $map=@(Get-Content -LiteralPath (Join-Path $PSScriptRoot 'Runtime/SimpleAvionics/Controls/input-hash-map.tsv'))
+ $recovery=Join-Path $installHome ('binding-restore-'+[guid]::NewGuid().ToString('N'))
+ foreach($file in Get-ChildItem -LiteralPath $inputRoot -Recurse -File -Filter '*.diff.lua'){
+  $currentHash=Hash $file.FullName
+  $tracked=@($state.entries | Where-Object {$_.target -eq $file.FullName})
+  $text=[IO.File]::ReadAllText($file.FullName);$next=$text
+  foreach($line in $map){
+   $pair=$line -split "`t";if($pair.Count -ne 2){throw 'Invalid binding migration table.'}
+   $original='["'+$pair[0]+'"]';$routed='["'+$pair[1]+'"]'
+   if($text.Contains($routed)){
+    if($text.Contains($original)){throw "Conflicting native and routed binding entries; both have been left untouched: $($file.Name)"}
+    $next=$next.Replace($routed,$original)
+   }
+  }
+  if($next -eq $text -and -not($tracked.Count -and $currentHash -eq $tracked[0].stageHash)){continue}
+  $i=$plans.Count;$backup=Join-Path $recovery "$i.current.diff.lua";$stage=Join-Path $recovery "$i.restored.diff.lua"
+  [IO.Directory]::CreateDirectory($recovery)|Out-Null
+  Copy-Item -LiteralPath $file.FullName -Destination $backup
+  if((Hash $backup) -ne $currentHash){throw 'Current binding snapshot verification failed.'}
+  if($tracked.Count -and $currentHash -eq $tracked[0].stageHash){Copy-Item -LiteralPath $tracked[0].backup -Destination $stage}
+  else{WriteText $stage $next}
+  $plans.Add([pscustomobject]@{target=$file.FullName;currentHash=$currentHash;backup=$backup;stage=$stage;stageHash=(Hash $stage)})
+ }
+ if($plans.Count){SaveJson (Join-Path $recovery 'plan.json') @($plans.ToArray())}
+ return @($plans.ToArray())
+}
 function CheckEntries($state,[switch]$Restoring){
  if($state.dcsRoot -ne $DcsRoot -or $state.savedGames -ne $SavedGames){throw 'Installation record does not match the selected paths.'}
  foreach($e in $state.entries){
   $target=Full $e.target;$backup=Full $e.backup
   if((-not $target.StartsWith($DcsRoot+'\',[StringComparison]::OrdinalIgnoreCase) -and -not $target.StartsWith($SavedGames+'\',[StringComparison]::OrdinalIgnoreCase)) -or -not $backup.StartsWith($installHome+'\',[StringComparison]::OrdinalIgnoreCase)){throw 'Installation record contains out-of-bounds paths.'}
   if($e.existed -and (-not(Test-Path -LiteralPath $e.backup) -or (Hash $e.backup) -ne $e.sourceHash)){throw "Original backup is damaged: $($e.target)"}
+  # Saved input diffs are user-owned: normal DCS edits and deletions are allowed.
+  if(IsBinding $e.target){continue}
   if(Test-Path -LiteralPath $e.target){
    $h=Hash $e.target
    if($h -ne $e.stageHash -and (-not $Restoring -or -not $e.existed -or $h -ne $e.sourceHash)){throw "File changed after installation; stopped to preserve later edits: $($e.target)"}
@@ -31,15 +67,19 @@ function CheckEntries($state,[switch]$Restoring){
 }
 function RestoreEntries($state){
  CheckEntries $state -Restoring
+ $bindingPlans=@(PrepareBindingRestore $state)
+ foreach($p in $bindingPlans){if((Hash $p.target) -ne $p.currentHash){throw 'Bindings changed during restore preparation. Retry after closing DCS.'}}
  foreach($e in $state.entries){
+  if(IsBinding $e.target){continue}
   if($e.existed){Copy-Item -LiteralPath $e.backup -Destination $e.target -Force;if((Hash $e.target) -ne $e.sourceHash){throw 'Hash mismatch after restoration.'}}
   elseif(Test-Path -LiteralPath $e.target){Remove-Item -LiteralPath $e.target}
  }
+ foreach($p in $bindingPlans){Copy-Item -LiteralPath $p.stage -Destination $p.target -Force;if((Hash $p.target) -ne $p.stageHash){throw 'Binding restoration verification failed.'}}
  $state.status='restored';SaveJson $statePath $state
  Move-Item -LiteralPath $statePath -Destination (Join-Path $installHome ('restored-'+[guid]::NewGuid().ToString('N')+'.json'))
 }
 if($Action -eq 'Check'){
- if(Test-Path -LiteralPath $statePath){$state=Get-Content $statePath -Raw|ConvertFrom-Json;CheckEntries $state;'Installed. All target files and original backups verified.';"Runtime: $($state.runtime)"}
+ if(Test-Path -LiteralPath $statePath){$state=Get-Content $statePath -Raw|ConvertFrom-Json;CheckEntries $state;'Installed. Game files and original backups verified. User input bindings may be edited freely.';"Runtime: $($state.runtime)"}
  else{'This package is not installed at the selected paths.'}
  "Backup location: $installHome";return
 }
@@ -48,7 +88,7 @@ if($Action -eq 'Restore'){
  if(-not(Test-Path -LiteralPath $statePath)){'This package is not installed at the selected paths; nothing to restore.';return}
  $state=Get-Content $statePath -Raw|ConvertFrom-Json
  RestoreEntries $state
- 'Pre-installation files fully restored. Backups are retained outside the game directory.';return
+ 'Game files restored. Current input bindings preserved with native command IDs. Backups are retained outside the game directory.';return
 }
 if(Test-Path -LiteralPath $statePath){
  $state=Get-Content $statePath -Raw|ConvertFrom-Json;CheckEntries $state
