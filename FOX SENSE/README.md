@@ -1,49 +1,62 @@
-# FOX SENSE 0.10.8
+# FOX SENSE 0.10.12
 
-FOX SENSE is an external situational-awareness overlay for DCS World, designed to support older-generation jets facing modern threats. Available information varies by aircraft, mission and server export permissions. Jester integration and the optional portrait apply to the F-4E.
+FOX SENSE is a situational-awareness overlay for DCS World, designed to support older-generation jets facing modern threats. Available information depends on aircraft data and mission/server export permissions. Jester integration and the optional subtitle portrait apply to the F-4E.
 
-[Download FOX SENSE 0.10.8](https://github.com/Bishop-611/DCS-BA-MODS/releases/tag/fox-sense-v0.10.8)
+[Download FOX SENSE 0.10.12](https://github.com/Bishop-611/DCS-BA-MODS/releases/tag/fox-sense-v0.10.12)
 
 ## Downloads
 
-- **FOX-SENSE-0.10.8-EXE.zip**: extract and run `F4E FOX SENSE Setup.exe`. The single installer includes its runtime and scripts.
-- **FOX-SENSE-0.10.8-Manual.zip**: file-copy installation without the Setup EXE. Follow the included `README.txt`, including the Jester log-path edit if using Jester.
-- **SHA256SUMS.txt**: SHA-256 checksums for both downloads and the installer inside the EXE ZIP.
+- **FOX-SENSE-0.10.12-Setup.exe**: the self-contained guided installer.
+- **FOX-SENSE-0.10.12-EXE.zip**: the same installer, this English guide and the license.
+- **FOX-SENSE-0.10.12-Manual.zip**: manual file-copy installation without the Setup EXE. Follow its English `README.txt`.
+- **SHA256SUMS.txt**: SHA-256 checksums for all downloads.
 
-Choose one installation method. Do not run two copies simultaneously. GitHub's automatically generated source archives are not installation packages.
+Use one installation method and do not run multiple copies. GitHub's automatically generated source archives are not installation packages.
 
-## Changes since 0.10.4
+## Changes since 0.10.8
 
-- Aircraft and missile markers share perspective projection based on the current camera pose, with live FOV data when available.
-- Improved HUD window visibility recovery and cockpit-only hide/show behavior. The existing cockpit proximity detection is retained.
-- Removed the menu's Ctrl+Alt+F10 hint. The menu shortcut itself is retained.
-- Update rate remains capped at 30 Hz. Existing calibration controls and optional Jester subtitle portrait replacement are retained.
+- Camera/HUD and GUI FOV sampling target up to 60 Hz; actual rendering rate depends on game frame rate and processing time.
+- World-object, missile and native RWR snapshots run at up to 10 Hz, separately from the camera stream.
+- Target lists are no longer repeated in every camera frame. The bridge stops its export work without a fresh local FOX SENSE heartbeat, including shortly after the application closes or crashes.
+- Camera updates no longer refresh the age of old world observations. Missile samples include their matching ownship position.
+- Added an independent **Flight data** switch for airspeed, altitude, HDG, angle of attack, Mach and G. The setting is saved, while JHMCS target markers remain independently selectable.
+- The menu shortcut hint remains removed. The existing HUD visibility, cockpit-only behavior, calibration controls and optional portrait replacement are retained.
 
-## EXE installation / update
+In a deterministic Lua fixture with 2,033 objects and ten simulated seconds, each world-query category fell from 601 calls to 101, and log output fell from 3,367,768 bytes to 811,592 bytes. These are offline call-count and data-volume measurements, not a DCS FPS benchmark. Small camera records are still flushed for low-latency reading; flush frequency was not reduced.
 
-1. Close FOX SENSE and DCS. Back up your FOX SENSE folder, profile `Scripts/Export.lua`, existing Jester mod scripts and `Scripts/Hooks/FoxViewFov.lua` if present.
-2. Extract the EXE ZIP and run `F4E FOX SENSE Setup.exe`.
-3. Select your DCS **Saved Games profile**, normally `C:\Users\YOUR_WINDOWS_USER\Saved Games\DCS`, and the application location under that profile's `Mods` folder. The profile is not the DCS game installation directory.
-4. Check the F-4E Jester mods location if using that integration, normally `Saved Games\DCS_F4E\jester\mods`.
-5. Leave **Replace Jester portrait (optional)** unchecked to retain the current subtitle portrait. This does not replace the 3D crew model.
-6. Select **Install / Update**, then launch FOX SENSE. Restart DCS to load the GUI FOV hook when upgrading from 0.10.4. Keep the installed `Backups` folder and `install-manifest.json`.
+## Guided installation / update
 
-Existing EXE installations retain settings. For a first alignment check, reset aircraft and missile calibration to 1.0, then adjust as needed. Missing FOV data falls back to manual calibration.
+1. Close DCS and FOX SENSE. Back up your installed FOX SENSE folder, profile `Scripts/Export.lua`, existing Jester mod scripts, `Scripts/Hooks/FoxViewFov.lua` and files under `Scripts/F4RwrLink` if present.
+2. Run `FOX-SENSE-0.10.12-Setup.exe`, directly or after extracting the EXE ZIP.
+3. Select your **DCS Saved Games profile**, normally `C:\Users\YOUR_WINDOWS_USER\Saved Games\DCS`. This is not the DCS game installation directory. Use an application subfolder under that profile's `Mods` folder.
+4. Check your F-4E Jester mods location if using that integration, normally `Saved Games\DCS_F4E\jester\mods`.
+5. Leave **Replace Jester portrait (optional)** unchecked to keep your current subtitle portrait. This does not replace the 3D crew model.
+6. Select **Install / Update**, then restart DCS and launch FOX SENSE. Keep the installed `Backups` folder and `install-manifest.json`.
 
-## Manual installation
+Existing EXE installations retain their settings. Update the runtime, Export bridge, GUI hook and activity helper together. The new bridge depends on the new HUD heartbeat; do not mix it with an older runtime.
 
-Follow `README.txt` inside the Manual ZIP. Back up `Runtime/HudSettings.json` before copying and restore it afterwards to preserve settings. Merge folders without replacing an entire Saved Games profile. Append the supplied Export loader to your existing Export.lua; preserve other mods' loaders. The package includes `Scripts/Hooks/FoxViewFov.lua`, which loads on DCS startup.
+## Manual installation / update
 
-## Controls and compatibility
+Follow `README.txt` inside the Manual ZIP. Merge folders without replacing an entire Saved Games profile. Append the supplied Export loader to your existing Export.lua and preserve other mods' loaders. Configure the Jester log path if using that integration.
 
-Click the draggable FOX logo to open the menu. Use its HUD switch to show or hide the in-game displays; the menu stays available. The close button hides the menu; use **Exit** inside the menu to quit.
+Back up `Runtime/HudSettings.json` before copying, then restore it afterwards to retain your settings. Include `Scripts/F4RwrLink/FoxBridgeActivity.lua` and `Scripts/Hooks/FoxViewFov.lua`. Restart DCS after updating the scripts.
 
-Cockpit-only visibility uses camera proximity, so it is an approximation rather than an exact camera-mode identifier. Standard single-view desktop rendering is the intended layout. VR and custom multi-camera viewport alignment are not confirmed. In-game HUD visibility was confirmed by the maintainer for this version. Multiplayer IC compatibility for this update has not been separately revalidated; information availability remains subject to server permissions.
+## Controls
 
-## Antivirus alerts
+Click the draggable FOX logo to open the menu. **JHMCS markers** controls target markers. **Flight data**, next to its size slider, controls the airspeed/altitude/HDG/AoA/Mach/G group. The bottom **HUD** switch controls all in-game displays while leaving menu access available. The close button hides the menu; use **Exit** to quit.
 
-Some antivirus products may flag the EXE. Such detections may be false positives but should be reviewed. Download from the official release and compare SHA-256 values with `SHA256SUMS.txt`; matching hashes establish file identity, not safety. A manual installation package is available. Do not disable antivirus protection.
+## Compatibility and limitations
 
-## License and support
+Windows and DCS World are required. Data availability depends on the aircraft, mission and server export permissions. Cockpit-only visibility uses camera proximity rather than an exact camera-mode identifier. VR and custom multi-camera viewport alignment are not confirmed.
 
-See `LICENSE` for the project's non-commercial terms. Third-party materials retain their own terms. The bundled font license is in `Runtime/Overlay/Fonts/OFL.txt`. Report issues at https://github.com/Bishop-611/DCS-BA-MODS/issues with installation method, DCS version and reproduction steps. Remove personal information before sharing logs.
+World observations now update at 10 Hz, which can add about 100 ms of discovery delay at normal simulation speed. This release does not claim to resolve the previously reported head-motion marker alignment issue. Multiplayer IC and real DCS performance for this update have not been separately revalidated.
+
+## Removal / restoration
+
+Close FOX SENSE and DCS. Preserve newer changes from other mods. Remove only the FOX SENSE loader block in Export.lua; restore its bridge, activity helper, GUI hook and Jester scripts from the matching backups, or remove those exact files only if FOX SENSE originally added them. Restore the portrait backup if applicable. Then remove the application folder and shortcut. Do not replace a newer complete Export.lua with an old backup.
+
+## Antivirus, license and support
+
+Some antivirus products may flag the EXE or scripts. Review alerts and download only from the official release. Matching SHA-256 values confirm file identity, not safety. Do not disable antivirus protection. The Manual ZIP is available if you prefer not to run the installer.
+
+See `LICENSE` for non-commercial terms. Third-party materials retain their own terms; the font license is included at `Runtime/Overlay/Fonts/OFL.txt`. Report issues at https://github.com/Bishop-611/DCS-BA-MODS/issues with the DCS version, installation method and reproduction steps. Remove personal information before sharing logs.
