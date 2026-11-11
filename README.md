@@ -6,7 +6,7 @@ DCS World and Heatblur F-4E mods by Bishop-611.
 | --- | --- | --- |
 | [FOX SENSE](FOX%20SENSE/README.md) | Situational-awareness overlay | [0.10.12](https://github.com/Bishop-611/DCS-BA-MODS/releases/tag/fox-sense-v0.10.12) |
 | [F4E Modern Avionics](F4E%20modernization/README.md) | Radar, HUD, CCIP/CCRP and RWR modernization | [1.1.41](F4E%20modernization/F4E-Modern-Avionics-1.1.41.exe) |
-| [F4E-Niko WSO](F4E-Niko%20WSO/README.md) | Rear-seat character, voice, music and livery bundle | [v6](https://github.com/Bishop-611/DCS-BA-MODS/releases/tag/f4e-niko-wso-v6) |
+| [F4E-Niko WSO](F4E-Niko%20WSO/README.md) | Rear-seat character, voice, music and livery bundle | [v7](https://github.com/Bishop-611/DCS-BA-MODS/releases/tag/f4e-niko-wso-v7) |
 
 Modern Avionics 1.1.41 fixes installer recovery and preserves supported shared-script integrations.
 

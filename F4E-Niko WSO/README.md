@@ -2,20 +2,20 @@
 
 [All projects](../README.md)
 
-**Current stable version: v6**
+**Current version: v7**
 
 Complete Niko rear-seat WSO replacement package for the Heatblur F-4E.
 
 ## Download
 
-[Download v6](https://github.com/Bishop-611/DCS-BA-MODS/releases/tag/f4e-niko-wso-v6). Select **F4E-Niko.WSO.exe** and its SHA-256 file from the release assets. The executable is also referred to as `F4E-Niko WSO.exe` in the installation guide.
+[Download v7](https://github.com/Bishop-611/DCS-BA-MODS/releases/tag/f4e-niko-wso-v7). Select **F4E-Niko-WSO-v7.exe** and its SHA-256 file from the release assets.
 
 ## Included components
 
 - Rear-seat character, external and cockpit models, and first-person body.
 - Niko Jester portrait and 15,224 voice files.
 - Nine Tape Player tracks with nine sound definitions.
-- FOX PLATOON v0.9 livery.
+- FOX PLATOON v0.13 livery: darker camouflage, stronger rivet/panel-seam detail, matte materials and repaired normal-map DDS headers.
 
 FOX SENSE application and avionics are separate projects.
 
@@ -26,11 +26,11 @@ FOX SENSE application and avionics are separate projects.
 3. Choose **Install All**.
 4. Keep the generated **NikoWSO_Backups** folder. Use **Restore All** to undo the installation.
 
-Existing resources are backed up. Repeated installation preserves the initial backups. Unsupported model versions or conflicting managed-file edits stop installation for review. The installer preserves other avionics modifications when merging its marked script sections.
+Known v0.9–v0.12 livery revisions are accepted for upgrade. Existing resources are backed up. Repeated installation preserves the initial backups. Unsupported model versions or conflicting managed-file edits stop installation for review. The installer preserves other avionics modifications when merging its marked script sections.
 
 See [detailed installation instructions](INSTALLATION.txt). If using FOX SENSE, leave its optional portrait replacement unchecked.
 
-![Installer preview](Installer-preview.png)
+The v7 livery update was packaged without an additional test or in-game review pass. The character, voice and music content is retained from v6.
 
 ## Character and animation
 

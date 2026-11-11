@@ -1,6 +1,6 @@
-F4E-Niko WSO - COMPLETE PACKAGE v6
+F4E-Niko WSO - COMPLETE PACKAGE v7
 
-Close DCS, launch F4E-Niko WSO.exe, and confirm both folders:
+Close DCS, launch F4E-Niko-WSO-v7.exe, and confirm both folders:
   DCS World folder: the installation containing Mods/aircraft/F-4E.
   Saved Games profile: your active DCS profile (for example Saved Games/DCS).
 
@@ -9,7 +9,7 @@ INSTALL ALL installs these components together:
   2. Niko Jester portrait.
   3. 15,224 Jester voice files from the supplied FOX SENSE resource pack.
   4. Nine Tape Player tracks and their nine sound definitions.
-  5. FOX PLATOON v0.9 livery in the selected Saved Games profile.
+  5. FOX PLATOON v0.13 livery (darker paint and enhanced rivet/panel detail) in the selected Saved Games profile.
 
 RESTORE ALL restores the original supported F-4E model files, removes Niko's
 marked script additions, and restores the portrait/audio/livery files that
@@ -20,7 +20,7 @@ part of this installer. Keep NikoWSO_Backups inside the DCS folder for restorati
 The installer verifies all managed files and prepares backups before writing.
 An unsupported F-4E model version or a later edit to a managed resource stops
 the operation instead of overwriting that edit. Repeated installation preserves
-the initial resource backups. Installation supports upgrading the previous v5.
+the initial resource backups. Installation supports upgrading the previous v5/v6 packages and known v0.9-v0.12 livery revisions.
 
 MODEL DETAILS
   Anatomical height: 160 cm, soles to crown, excluding ears and halo.
@@ -31,5 +31,4 @@ MODEL DETAILS
   Observation motion range is reduced to keep ears and halo inside the canopy.
   Hands remain constrained to the stick and throttle during observation motions.
 
-Offline geometry/export and installer checks do not replace an in-game test.
-This delivery does not install anything into the actual DCS installation.
+The v7 livery update was packaged without an additional test or in-game review pass.
