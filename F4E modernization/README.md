@@ -1,8 +1,14 @@
-# F4E modernization
+# F4E Modern Avionics
 
-## Version 1.1.36
+[All projects](../README.md) · [Support](../docs/SUPPORT.md)
 
-The current accepted radar, HUD and RWR modernization release for the Heatblur F-4E in DCS **2.9.31.29434**.
+**Public download: 1.1.36. Maintainer-accepted local baseline: 1.1.40.**
+
+The instructions below describe the published 1.1.36 package. Version 1.1.40 has not been uploaded here; do not rename the older installer to represent it.
+
+## Download
+
+The published radar, HUD and RWR modernization package for the Heatblur F-4E in DCS **2.9.31.29434**.
 
 [Download the installer](F4E-Modern-Avionics-1.1.36.exe) and verify it against [SHA256.txt](SHA256.txt).
 

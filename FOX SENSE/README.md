@@ -1,4 +1,8 @@
-# FOX SENSE 0.10.12
+# FOX SENSE
+
+[All projects](../README.md) · [Support](../docs/SUPPORT.md)
+
+**Current stable version: 0.10.12**
 
 FOX SENSE is a situational-awareness overlay for DCS World, designed to support older-generation jets facing modern threats. Available information depends on aircraft data and mission/server export permissions. Jester integration and the optional subtitle portrait apply to the F-4E.
 
@@ -49,7 +53,7 @@ Click the draggable FOX logo to open the menu. **JHMCS markers** controls target
 
 Windows and DCS World are required. Data availability depends on the aircraft, mission and server export permissions. Cockpit-only visibility uses camera proximity rather than an exact camera-mode identifier. VR and custom multi-camera viewport alignment are not confirmed.
 
-World observations now update at 10 Hz, which can add about 100 ms of discovery delay at normal simulation speed. This release does not claim to resolve the previously reported head-motion marker alignment issue. Multiplayer IC and real DCS performance for this update have not been separately revalidated.
+World observations now update at 10 Hz, which can add about 100 ms of discovery delay at normal simulation speed. The maintainer has accepted 0.10.12 as stable. Compatibility still depends on DCS updates, display configuration and server settings; this status does not imply universal IC or VR compatibility.
 
 ## Removal / restoration
 
@@ -59,4 +63,4 @@ Close FOX SENSE and DCS. Preserve newer changes from other mods. Remove only the
 
 Some antivirus products may flag the EXE or scripts. Review alerts and download only from the official release. Matching SHA-256 values confirm file identity, not safety. Do not disable antivirus protection. The Manual ZIP is available if you prefer not to run the installer.
 
-See `LICENSE` for non-commercial terms. Third-party materials retain their own terms; the font license is included at `Runtime/Overlay/Fonts/OFL.txt`. Report issues at https://github.com/Bishop-611/DCS-BA-MODS/issues with the DCS version, installation method and reproduction steps. Remove personal information before sharing logs.
+See [LICENSE](../LICENSE) for non-commercial terms. Third-party materials retain their own terms; the font license is included at `Runtime/Overlay/Fonts/OFL.txt`. Report issues at https://github.com/Bishop-611/DCS-BA-MODS/issues with the DCS version, installation method and reproduction steps. Remove personal information before sharing logs.
