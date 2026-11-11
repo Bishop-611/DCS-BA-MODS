@@ -1,6 +1,6 @@
-NIKO WSO - COMPLETE PACKAGE v6
+F4E-Niko WSO - COMPLETE PACKAGE v6
 
-Close DCS, launch Niko-WSO-Setup.exe, and confirm both folders:
+Close DCS, launch F4E-Niko WSO.exe, and confirm both folders:
   DCS World folder: the installation containing Mods/aircraft/F-4E.
   Saved Games profile: your active DCS profile (for example Saved Games/DCS).
 
