@@ -1,6 +1,6 @@
 # FOX SENSE
 
-[All projects](../README.md) · [Support](../docs/SUPPORT.md)
+[All projects](../README.md)
 
 **Current stable version: 0.10.12**
 
@@ -16,17 +16,6 @@ FOX SENSE is a situational-awareness overlay for DCS World, designed to support 
 - **SHA256SUMS.txt**: SHA-256 checksums for all downloads.
 
 Use one installation method and do not run multiple copies. GitHub's automatically generated source archives are not installation packages.
-
-## Changes since 0.10.8
-
-- Camera/HUD and GUI FOV sampling target up to 60 Hz; actual rendering rate depends on game frame rate and processing time.
-- World-object, missile and native RWR snapshots run at up to 10 Hz, separately from the camera stream.
-- Target lists are no longer repeated in every camera frame. The bridge stops its export work without a fresh local FOX SENSE heartbeat, including shortly after the application closes or crashes.
-- Camera updates no longer refresh the age of old world observations. Missile samples include their matching ownship position.
-- Added an independent **Flight data** switch for airspeed, altitude, HDG, angle of attack, Mach and G. The setting is saved, while JHMCS target markers remain independently selectable.
-- The menu shortcut hint remains removed. The existing HUD visibility, cockpit-only behavior, calibration controls and optional portrait replacement are retained.
-
-In a deterministic Lua fixture with 2,033 objects and ten simulated seconds, each world-query category fell from 601 calls to 101, and log output fell from 3,367,768 bytes to 811,592 bytes. These are offline call-count and data-volume measurements, not a DCS FPS benchmark. Small camera records are still flushed for low-latency reading; flush frequency was not reduced.
 
 ## Guided installation / update
 
@@ -59,8 +48,8 @@ World observations now update at 10 Hz, which can add about 100 ms of discovery 
 
 Close FOX SENSE and DCS. Preserve newer changes from other mods. Remove only the FOX SENSE loader block in Export.lua; restore its bridge, activity helper, GUI hook and Jester scripts from the matching backups, or remove those exact files only if FOX SENSE originally added them. Restore the portrait backup if applicable. Then remove the application folder and shortcut. Do not replace a newer complete Export.lua with an old backup.
 
-## Antivirus, license and support
+## License and support
 
-Some antivirus products may flag the EXE or scripts. Review alerts and download only from the official release. Matching SHA-256 values confirm file identity, not safety. Do not disable antivirus protection. The Manual ZIP is available if you prefer not to run the installer.
+[Non-commercial license](../LICENSE). Third-party materials retain their own terms; the font license is included in the package.
 
-See [LICENSE](../LICENSE) for non-commercial terms. Third-party materials retain their own terms; the font license is included at `Runtime/Overlay/Fonts/OFL.txt`. Report issues at https://github.com/Bishop-611/DCS-BA-MODS/issues with the DCS version, installation method and reproduction steps. Remove personal information before sharing logs.
+[Report an issue](https://github.com/Bishop-611/DCS-BA-MODS/issues) with your DCS version, package version and reproduction steps.

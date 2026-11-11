@@ -1,6 +1,6 @@
 # F4E-Niko WSO
 
-[All projects](../README.md) · [Support](../docs/SUPPORT.md)
+[All projects](../README.md)
 
 **Current stable version: v6**
 
@@ -35,10 +35,6 @@ See [detailed installation instructions](INSTALLATION.txt). If using FOX SENSE, 
 ## Character and animation
 
 The character retains a 160 cm soles-to-crown scale, excluding ears and halo. LOD3 has 22,000 triangles, LOD4 has 7,499, and LOD5/6 hide the WSO. Native Jester observation and facial channels drive Niko with reduced motion for canopy clearance. Hands and feet follow the original controls. The original rear WSO oxygen mask is removed.
-
-## Version status
-
-The maintainer has accepted v6 as stable. Offline geometry, animation/export, upgrade, repeated installation/restoration, conflict protection and resource restoration checks are documented. This does not establish compatibility with every future DCS version or VR configuration.
 
 ## License
 
