@@ -5,7 +5,7 @@ A collection of DCS mod projects maintained by Bishop-611.
 ## Projects
 
 - [FOX SENSE](FOX%20SENSE/)
-- [Niko WSO Voiceover](Niko%20WSO%20Voiceover/)
+- [F4E-Niko WSO](F4E-Niko%20WSO/)
 - [F4E modernization](F4E%20modernization/)
 
 ## License
@@ -29,3 +29,4 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for the workflow and contribution terms.
 
 All repository documentation, comments, commit messages, and pull request
 text must be in English.
+

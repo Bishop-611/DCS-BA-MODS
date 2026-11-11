@@ -1,0 +1,35 @@
+NIKO WSO - COMPLETE PACKAGE v6
+
+Close DCS, launch Niko-WSO-Setup.exe, and confirm both folders:
+  DCS World folder: the installation containing Mods/aircraft/F-4E.
+  Saved Games profile: your active DCS profile (for example Saved Games/DCS).
+
+INSTALL ALL installs these components together:
+  1. Niko rear WSO, external/cockpit models and first-person body.
+  2. Niko Jester portrait.
+  3. 15,224 Jester voice files from the supplied FOX SENSE resource pack.
+  4. Nine Tape Player tracks and their nine sound definitions.
+  5. FOX PLATOON v0.9 livery in the selected Saved Games profile.
+
+RESTORE ALL restores the original supported F-4E model files, removes Niko's
+marked script additions, and restores the portrait/audio/livery files that
+existed before this bundle was installed. Newly added resource files are removed.
+Other avionics changes are preserved. FOX SENSE application/bridge files are not
+part of this installer. Keep NikoWSO_Backups inside the DCS folder for restoration.
+
+The installer verifies all managed files and prepares backups before writing.
+An unsupported F-4E model version or a later edit to a managed resource stops
+the operation instead of overwriting that edit. Repeated installation preserves
+the initial resource backups. Installation supports upgrading the previous v5.
+
+MODEL DETAILS
+  Anatomical height: 160 cm, soles to crown, excluding ears and halo.
+  Approved seated position, cushion, control grips and first-person visibility.
+  LOD3: 22,000 triangles; LOD4: 7,499; LOD5/6: no WSO.
+  Original rear WSO oxygen mask removed in every visible LOD.
+  Native Jester observation timing drives head/body movement, blink, brow and eyes.
+  Observation motion range is reduced to keep ears and halo inside the canopy.
+  Hands remain constrained to the stick and throttle during observation motions.
+
+Offline geometry/export and installer checks do not replace an in-game test.
+This delivery does not install anything into the actual DCS installation.
