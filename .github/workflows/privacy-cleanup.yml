@@ -1,0 +1,38 @@
+name: Complete privacy cleanup
+on:
+  workflow_run:
+    workflows: ['Sanitize release packages']
+    types: [completed]
+permissions:
+  contents: write
+jobs:
+  cleanup:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Remove completed temporary workflows
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: python
+        run: |
+          import os,json,urllib.request,urllib.error
+          repo=os.environ["GITHUB_REPOSITORY"]
+          base="https://api.github.com/repos/"+repo
+          def api(method,path,data=None):
+              req=urllib.request.Request(base+path,method=method,headers={"Authorization":"Bearer "+os.environ["GH_TOKEN"],"Accept":"application/vnd.github+json","Content-Type":"application/json"},data=None if data is None else json.dumps(data).encode())
+              try:
+                  with urllib.request.urlopen(req) as r:
+                      body=r.read()
+                      return json.loads(body) if body else None
+              except urllib.error.HTTPError as e:
+                  if method=="DELETE" and e.code==404:return None
+                  raise
+          head=api("GET","/git/ref/heads/main")["object"]["sha"]
+          commit=api("GET","/git/commits/"+head)
+          tree=api("GET","/git/trees/"+commit["tree"]["sha"]+"?recursive=1")
+          remove=[e for e in tree["tree"] if e["type"]=="blob" and (e["path"].startswith(".github/privacy-repack/") or e["path"] in (".github/workflows/privacy-repack.yml",".github/workflows/privacy-cleanup.yml"))]
+          newtree=api("POST","/git/trees",{"base_tree":commit["tree"]["sha"],"tree":[{"path":e["path"],"mode":"100644","type":"blob","sha":None} for e in remove]})
+          newcommit=api("POST","/git/commits",{"message":"Remove completed temporary privacy maintenance workflows","tree":newtree["sha"],"parents":[head],"author":{"name":"Bishop-611","email":"113646710+Bishop-611@users.noreply.github.com"}})
+          api("PATCH","/git/refs/heads/main",{"sha":newcommit["sha"],"force":False})
+          print("PASS: temporary privacy maintenance workflows removed.")
+          
