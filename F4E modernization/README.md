@@ -2,38 +2,41 @@
 
 [All projects](../README.md)
 
-**Current version: 1.1.41.**
+**Current version: 1.1.43** for Heatblur F-4E / **DCS 2.9.31.29434**.
 
-## Download
+## Downloads
 
-The radar, HUD and RWR modernization package for the Heatblur F-4E in DCS **2.9.31.29434**.
+- [EXE installer](F4E-Modern-Avionics-1.1.43.exe): graphical Install, Check status and Restore.
+- [Pure manual ZIP](F4E-Modern-Avionics-1.1.43-Pure-Manual.zip): File Explorer and text-editor installation. No PowerShell, command prompt or EXE required.
+- [Pure manual installation guide](MANUAL-INSTALLATION.txt)
+- [SHA-256 checksums](SHA256.txt)
 
-[Download the installer](F4E-Modern-Avionics-1.1.41.exe) and verify it against [SHA256.txt](SHA256.txt).
+Both editions provide the same avionics functions. The manual edition resolves runtime locations from your active Saved Games profile. It requires copying files and making the documented Lua merges; it is not a one-folder drag-and-drop mod.
 
-## Install and restore
+## EXE installation
 
-1. Fully exit DCS.
-2. Open **F4E-Modern-Avionics-1.1.41.exe** and select your DCS and Saved Games directories.
-3. Select **Install**. A recoverable older or partially restored installation is safely restored before the new package is installed. Do not delete its installation records or backups.
-4. Select **Check status** to verify the installation.
-5. Use **Restore** to remove managed avionics changes while preserving supported shared-script integrations.
+Close DCS, run the installer, select the DCS World root and active Saved Games profile, then click **Install**. Use **Check status** to verify files or **Restore** to uninstall. Recognized older installations are safely restored before upgrading.
 
-Runtime files and backups are kept outside the game directory under the current user's Local AppData. Restoration preserves later input-binding edits, the delimited Niko WSO device block, and unrelated Export.lua plugins. Version 1.1.41 also fixes extraction of Windows-style empty ZIP directories. Unrecognized cockpit edits, modified avionics-owned export hooks, damaged backups, or unsupported game baselines still stop the operation for review. Unmanaged cockpit modifications or a different DCS baseline may prevent installation. Administrator privileges are needed only when the installation directory requires them.
+Keep `%LOCALAPPDATA%/F4ModernAvionics/Installations` while installed: it contains runtime files and original backups. Unsupported baselines, damaged backups and unknown edits stop installation. Do not bypass these checks. Supported Niko blocks, unrelated Export.lua additions and later input-binding edits are preserved.
 
-Tested using the extracted EXE under Windows PowerShell 5.1: fresh install, safe upgrade, stale records without Niko, partial restoration, Niko installed before or after avionics, independent export plugins, conflict refusal, and exact restoration. The reported installation state was reproduced and recovered in an isolated copy; the live game was not modified. Flight-avionics content is unchanged from the accepted 1.1.40 baseline.
+## Pure manual installation
 
-## Existing controls
+Extract the ZIP and follow its README using File Explorer and a text editor. Back up the listed files first. Copy the DCS and SavedGames contents to the corresponding folders, then apply the supplied exact replacement and append snippets. Preserve existing Niko and other mod content. No personal machine path is embedded.
 
-- A/A Cage short press cycles 5/10/25/50 NM. Hold Cage to enter or exit ACM.
-- A/A NWS acquires or unlocks a target. In ACM it requests reacquisition of the nearest eligible return within 10 NM. STT and IFF remain available.
-- Original HCU keys and axes move the radar cursor.
-- A/G NWS hold switches CCIP/CCRP; short press designates or cancels a ground point. Original HCU controls adjust it.
-- Hold the original Bomb Release through the valid release window for the original quantity/interval program.
-- Existing HUD brightness, radar display controls and RWR AUDIO/DIM controls remain in use. No additional RWR bindings are required.
-- Native TV and Pave Spike controls remain unchanged.
+The manual edition is unmanaged: it does not create EXE installation receipts. Restore an EXE-managed installation before applying the manual edition. Undo the manual changes before switching back to the EXE. The guide includes binding migration and uninstall instructions.
 
-## Compatibility
+## Changes and controls
 
-Requires the supported Heatblur F-4E/DCS baseline. Conflicting cockpit modifications or later DCS updates may require adaptation. Multiplayer integrity-check compatibility is not claimed.
+1.1.43 uses panel parameter gauges for the original **5/10/25/50 NM** radar range lamps, replacing the unsuccessful direct-argument approach in 1.1.42.
+
+- Short Cage press cycles ranges; hold for 10 NM ACM.
+- A/A NWS acquires/unlocks; HCU moves the radar cursor. STT and IFF remain available.
+- A/G NWS hold switches CCIP/CCRP; short press designates/cancels a point.
+- Hold Bomb Release through the valid release window.
+- Existing HUD brightness, RWR AUDIO/DIM, TV and Pave Spike controls remain available.
+
+## Validation
+
+EXE extraction, isolated installation/reinstallation/restoration, editable bindings, Niko/shared-panel preservation and conflict refusal passed under Windows PowerShell 5.1. The pure manual package has separate Lua syntax and path-transformation checks; a separate in-game manual-install test is not claimed. Future DCS updates may require adaptation. Multiplayer integrity-check compatibility is not claimed.
 
 [Report an issue](https://github.com/Bishop-611/DCS-BA-MODS/issues) · [License](../LICENSE)
