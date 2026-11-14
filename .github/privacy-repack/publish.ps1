@@ -9,7 +9,7 @@ function GetRelease($tag){Invoke-RestMethod -Headers $headers -Uri "https://api.
 function Download($release,$name,$dest){$a=$release.assets|Where-Object name -eq $name;if(!$a){throw "Missing asset $name"};Write-Host ("Downloading "+$name);$client=New-Object Net.WebClient;try{$client.DownloadFile($a.browser_download_url,$dest)}finally{$client.Dispose()};if((Get-Item $dest).Length -ne $a.size){throw "Download size mismatch"};Write-Host ("Downloaded "+$name)}
 function ExtractResource($exe,$resource,$dest){$a=[Reflection.Assembly]::LoadFile($exe);$s=$a.GetManifestResourceStream($resource);if(!$s){throw 'Missing resource'};$o=[IO.File]::Create($dest);try{$s.CopyTo($o)}finally{$s.Dispose();$o.Dispose()}}
 function Icon($exe,$dest){$i=[Drawing.Icon]::ExtractAssociatedIcon($exe);$s=[IO.File]::Create($dest);try{$i.Save($s)}finally{$s.Dispose();$i.Dispose()}}
-function Python($mode,$src,$dst){& python (Join-Path $PSScriptRoot 'sanitize.py') $mode $src $dst;if($LASTEXITCODE){throw 'Privacy/identity verification failed'}}
+function Invoke-PrivacyCheck($mode,$src,$dst){& python.exe (Join-Path $PSScriptRoot 'sanitize.py') $mode $src $dst;if($LASTEXITCODE){throw 'Privacy/identity verification failed'}}
 Write-Host 'Starting verified privacy repack'
 $niko=GetRelease 'f4e-niko-wso-v7';$fox=GetRelease 'fox-sense-v0.10.12'
 $nOld=Join-Path $work 'niko-original.exe';$fOld=Join-Path $work 'fox-original.exe'
@@ -20,8 +20,8 @@ ExtractResource $nOld 'background.png' (Join-Path $work 'background.png')
 ExtractResource $fOld 'Fox.Payload.zip' (Join-Path $work 'fox-old.zip')
 Icon $nOld (Join-Path $work 'niko.ico');Icon $fOld (Join-Path $work 'fox.ico')
 Write-Host 'Sanitizing embedded payloads'
-Python 'niko' (Join-Path $work 'niko-old.zip') (Join-Path $work 'niko-clean.zip')
-Python 'fox-payload' (Join-Path $work 'fox-old.zip') (Join-Path $work 'fox-clean.zip')
+Invoke-PrivacyCheck 'niko' (Join-Path $work 'niko-old.zip') (Join-Path $work 'niko-clean.zip')
+Invoke-PrivacyCheck 'fox-payload' (Join-Path $work 'fox-old.zip') (Join-Path $work 'fox-clean.zip')
 Write-Host 'Compiling clean installers'
 $compiler=Join-Path $env:WINDIR 'Microsoft.NET/Framework64/v4.0.30319/csc.exe'
 $manifest=Join-Path $PSScriptRoot 'app.manifest'
@@ -34,13 +34,13 @@ $fExe=Join-Path $work 'FOX-SENSE-0.10.12-Setup.exe'
 & $compiler /nologo /target:winexe /optimize+ ('/out:'+$fExe) ('/win32manifest:'+$manifest) ('/win32icon:'+(Join-Path $work 'fox.ico')) ('/resource:'+(Join-Path $work 'fox-clean.zip')+',Fox.Payload.zip') /r:System.dll /r:System.Core.dll /r:System.Windows.Forms.dll /r:System.Drawing.dll /r:System.Web.Extensions.dll /r:System.IO.Compression.dll $foxSource
 if($LASTEXITCODE){throw 'FOX compilation failed'}
 $env:CLEAN_FOX_EXE=$fExe
-Python 'file' $fExe $fExe
-Python 'file' $nExe $nExe
+Invoke-PrivacyCheck 'file' $fExe $fExe
+Invoke-PrivacyCheck 'file' $nExe $nExe
 Write-Host 'Verifying Niko install and restore'
 $test=Start-Process -FilePath $nExe -ArgumentList @('--self-test',(Join-Path $work 'niko-test')) -Wait -PassThru -WindowStyle Hidden
 if($test.ExitCode){throw 'Niko restoration self-test failed'}
 $foxFiles=@($fExe)
-foreach($name in @('FOX-SENSE-0.10.12-EXE.zip','FOX-SENSE-0.10.12-Manual.zip')){$original=Join-Path $work ('original-'+$name);$dest=Join-Path $work $name;Download $fox $name $original;Python 'fox-archive' $original $dest;$foxFiles+=$dest}
+foreach($name in @('FOX-SENSE-0.10.12-EXE.zip','FOX-SENSE-0.10.12-Manual.zip')){$original=Join-Path $work ('original-'+$name);$dest=Join-Path $work $name;Download $fox $name $original;Invoke-PrivacyCheck 'fox-archive' $original $dest;$foxFiles+=$dest}
 $nHash=Join-Path $work 'F4E-Niko-WSO-v7.sha256';((Get-FileHash $nExe).Hash+'  '+[IO.Path]::GetFileName($nExe))|Set-Content $nHash -Encoding ascii
 $fHash=Join-Path $work 'SHA256SUMS.txt';$foxFiles|ForEach-Object {(Get-FileHash $_).Hash+'  '+[IO.Path]::GetFileName($_)}|Set-Content $fHash -Encoding ascii
 function ReplaceAssets($release,$files){
