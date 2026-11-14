@@ -5,12 +5,31 @@ on:
     paths: ['.github/privacy-repack/**', '.github/workflows/privacy-repack.yml']
 permissions:
   contents: write
+  actions: write
 jobs:
   repack:
     runs-on: windows-latest
     timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
+      - name: Stop previous slow attempt
+        shell: powershell
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          $ErrorActionPreference='Stop'
+          $headers=@{Authorization="Bearer $env:GH_TOKEN";Accept='application/vnd.github+json'}
+          $uri="https://api.github.com/repos/$env:GITHUB_REPOSITORY/actions/runs/43653926371"
+          $run=Invoke-RestMethod -Headers $headers -Uri $uri
+          if($run.status -ne 'completed'){
+            Invoke-RestMethod -Headers $headers -Method Post -Uri ($uri+'/cancel')
+            for($i=0;$i -lt 24;$i++){
+              Start-Sleep -Seconds 5
+              $run=Invoke-RestMethod -Headers $headers -Uri $uri
+              if($run.status -eq 'completed'){break}
+            }
+            if($run.status -ne 'completed'){throw 'Previous attempt has not stopped'}
+          }
       - name: Rebuild, verify and replace release assets
         shell: powershell
         env:
