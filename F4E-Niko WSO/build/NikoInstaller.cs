@@ -103,7 +103,7 @@ public class MainForm:Form {
   panel.SetBounds(724,24,372,652);panel.BackColor=Color.FromArgb(28,30,44);panel.ForeColor=Color.White;Controls.Add(panel);
   LabelAt(Package.LiveryOnly?"FOX PLATOON":"F4E-Niko WSO",24,20,324,62,25,FontStyle.Bold);LabelAt("F-4E  /  REAR WSO",28,84,320,28,12,FontStyle.Bold);LabelAt(Package.LiveryOnly?"TEMPORARY UPGRADE  /  v0.13":"COMPLETE PACKAGE  /  v7",28,125,320,25,10,FontStyle.Bold);
   LabelAt(Package.LiveryOnly?"Livery textures only\nDarker camouflage\nEnhanced rivets and panel seams\nExisting WSO and audio retained":"Rear-seat model & first-person body\nJester portrait & voice\nTape Player music\nFOX PLATOON v0.13 livery",28,160,320,100,11,FontStyle.Regular);
-  LabelAt("DCS WORLD FOLDER",28,278,310,22,9,FontStyle.Bold);game.Text=@"D:\DCS\DCS World";AddPath(game,304);
+  LabelAt("DCS WORLD FOLDER",28,278,310,22,9,FontStyle.Bold);game.Text="";AddPath(game,304);
   LabelAt("SAVED GAMES PROFILE",28,351,310,22,9,FontStyle.Bold);string home=Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);saved.Text=Path.Combine(home,@"Saved Games\DCS");AddPath(saved,377);
   install.Text="Install All";install.SetBounds(28,432,153,44);install.BackColor=Color.FromArgb(243,181,202);install.ForeColor=Color.FromArgb(28,30,44);restore.Text="Restore All";restore.SetBounds(191,432,153,44);restore.BackColor=Color.FromArgb(66,71,94);
   if(Package.LiveryOnly){install.Text="Upgrade Livery";restore.Text="Restore Livery";}
@@ -117,4 +117,3 @@ public class MainForm:Form {
  void Run(bool installing){if(busy)return;busy=true;string g=game.Text,s=saved.Text;foreach(Control c in panel.Controls)if(c!=status)c.Enabled=false;status.Text="Opening package...";Task.Factory.StartNew(delegate{try{using(var p=new Package())p.Apply(g,s,installing,delegate(string text){BeginInvoke((Action)delegate{status.Text=text;});});}catch(Exception e){BeginInvoke((Action)delegate{status.Text="Operation not completed.\r\n"+e.Message;});}finally{BeginInvoke((Action)delegate{busy=false;foreach(Control c in panel.Controls)c.Enabled=true;});}});}
  [STAThread]static int Main(string[] args){try{if(args.Length>=2&&args[0]=="--self-test"){using(var p=new Package())p.SelfTest(args[1],args.Length>2?args[2]:null);return 0;}Application.EnableVisualStyles();var form=new MainForm();if(args.Length==2&&args[0]=="--preview"){form.Show();Application.DoEvents();using(var b=new Bitmap(form.Width,form.Height)){form.DrawToBitmap(b,new Rectangle(Point.Empty,b.Size));b.Save(args[1]);}form.Dispose();return 0;}Application.Run(form);return 0;}catch(Exception e){if(args.Length>=2)File.WriteAllText(args[1]+"-error.txt",e.ToString());else MessageBox.Show(e.Message,"F4E-Niko WSO",MessageBoxButtons.OK,MessageBoxIcon.Error);return 1;}}
 }
-
