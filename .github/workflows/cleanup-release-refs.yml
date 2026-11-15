@@ -1,0 +1,45 @@
+name: Clean approved release refs
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/cleanup-release-refs.yml']
+permissions:
+  contents: write
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Clean approved refs and remove temporary workflow
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: python
+        run: |
+          import os,json,urllib.request
+          base="https://api.github.com/repos/"+os.environ["GITHUB_REPOSITORY"]
+          def api(method,path,data=None):
+              req=urllib.request.Request(base+path,method=method,headers={"Authorization":"Bearer "+os.environ["GH_TOKEN"],"Accept":"application/vnd.github+json","Content-Type":"application/json"},data=None if data is None else json.dumps(data).encode())
+              with urllib.request.urlopen(req) as r:
+                  b=r.read()
+                  return json.loads(b) if b else None
+          expected={"tags/f4e-niko-wso-v6":"01cd2f0ab80fb812c2cb87a796213737218bcf96","tags/f4e-niko-wso-v7":"5a2d4dfb2a2dea35a425ed98b7b8a0bb9fc4b9b9","tags/fox-sense-v0.10.12":"df96a457592c952283b14b12b1d16410db6b901d","tags/fox-sense-v0.10.4":"e0d1d99e89d0d3716a591135aa9925d5196570d8","tags/fox-sense-v0.10.8":"c6e8f95a92fb8fdcf633857345e76151fe718016","heads/release/niko-v7-fox-platoon-013":"0c686556a4dcc52c6f93ee1bf653237bd781906f"}
+          target="574b68a676fa11fb2d579d18a204d13e0f48ef52"
+          for ref,sha in expected.items():
+              assert api("GET","/git/ref/"+ref)["object"]["sha"]==sha, "Ref changed: "+ref
+          for tag in ("f4e-niko-wso-v7","fox-sense-v0.10.12"):
+              ref="tags/"+tag
+              assert api("GET","/git/ref/"+ref)["object"]["sha"]==expected[ref]
+              api("PATCH","/git/refs/"+ref,{"sha":target,"force":True})
+              print("Updated source snapshot: "+tag)
+          for ref in ("tags/f4e-niko-wso-v6","tags/fox-sense-v0.10.8","tags/fox-sense-v0.10.4","heads/release/niko-v7-fox-platoon-013"):
+              assert api("GET","/git/ref/"+ref)["object"]["sha"]==expected[ref]
+              api("DELETE","/git/refs/"+ref)
+              print("Removed obsolete ref: "+ref)
+          head=api("GET","/git/ref/heads/main")["object"]["sha"]
+          assert head==os.environ["GITHUB_SHA"], "Main changed; leave workflow for separate cleanup"
+          commit=api("GET","/git/commits/"+head)
+          tree=api("POST","/git/trees",{"base_tree":commit["tree"]["sha"],"tree":[{"path":".github/workflows/cleanup-release-refs.yml","mode":"100644","type":"blob","sha":None}]})
+          new=api("POST","/git/commits",{"message":"Remove completed release-ref cleanup workflow","tree":tree["sha"],"parents":[head],"author":{"name":"Bishop-611","email":"113646710+Bishop-611@users.noreply.github.com"}})
+          api("PATCH","/git/refs/heads/main",{"sha":new["sha"],"force":False})
+          print("PASS: approved release refs cleaned; temporary workflow removed. Historical commits were not rewritten.")
+          
