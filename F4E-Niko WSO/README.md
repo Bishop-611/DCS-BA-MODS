@@ -2,13 +2,13 @@
 
 [All projects](../README.md)
 
-**Current version: v8**
+**Current version: v9**
 
 Complete Niko rear-seat WSO replacement package for the Heatblur F-4E.
 
 ## Download
 
-[Download v8](https://github.com/Bishop-611/DCS-BA-MODS/releases/tag/f4e-niko-wso-v8). Select **F4E-Niko-WSO-v8.exe** and its SHA-256 file from the release assets.
+[Download v9](https://github.com/Bishop-611/DCS-BA-MODS/releases/tag/f4e-niko-wso-v9). Select **F4E-Niko-WSO-v9.exe** and its SHA-256 file from the release assets.
 
 ## Included components
 
@@ -32,9 +32,13 @@ See [detailed installation instructions](INSTALLATION.txt). If using FOX SENSE, 
 
 The warm texture and hair-shadow appearance was accepted after a temporary game installation. This release also includes rear-only ejection models; their landing and movement appearance still requires in-game verification. External Jester animation troubleshooting was deferred.
 
+## Rear harness fix
+
+Removes duplicate original rear Koch straps that continued following the original WSO skeleton. Niko's own harness and all front-seat straps are retained. The cockpit and near-distance external models are updated; other v8 resources and original restoration baselines are unchanged.
+
 ## Character and animation
 
-The v8 materials preserve warm skin and saturated pink hair without global darkening. Hair does not cast shadows; the face still responds to day/night lighting and has no self-illumination. Rear-only ejection personnel and occupied ejection seats are replaced at all four native LODs, preserving native animation nodes and non-character seat/parachute geometry. Generic pilots and front-seat ejected crew are unchanged.
+The v9 materials preserve warm skin and saturated pink hair without global darkening. Hair does not cast shadows; the face still responds to day/night lighting and has no self-illumination. Rear-only ejection personnel and occupied ejection seats are replaced at all four native LODs, preserving native animation nodes and non-character seat/parachute geometry. Generic pilots and front-seat ejected crew are unchanged.
 
 The character retains a 160 cm soles-to-crown scale, excluding ears and halo. LOD3 has 22,000 triangles, LOD4 has 7,499, and LOD5/6 hide the WSO. Native Jester observation and facial channels drive Niko with reduced motion for canopy clearance. Hands and feet follow the original controls. The original rear WSO oxygen mask is removed.
 
@@ -42,6 +46,10 @@ The character retains a 160 cm soles-to-crown scale, excluding ears and halo. LO
 
 Third-party materials retain their respective terms. See the repository [license](../LICENSE).
 
-## v8 validation
+## Previous validation
 
 The complete isolated installation/restoration test passed, including repeat operations, conflict protection, pre-existing resource restoration, new-file removal and unrelated avionics script preservation. All payload hashes and prior v7 manifest compatibility passed.
+
+## v9 validation
+
+Package hashes passed. The actual installer passed v8 upgrade, repeated install/restore, conflict protection, exact model/texture restoration and preservation of unrelated avionics script content. Unchanged bulk resources retain the complete v8 installation/restoration coverage.
