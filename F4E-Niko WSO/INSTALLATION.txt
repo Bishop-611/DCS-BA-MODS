@@ -1,23 +1,15 @@
-# F4E-Niko WSO v9
+# F4E-Niko WSO v10
 
-Fixes the floating rear-seat safety straps that continued following the original WSO skeleton. Duplicate original rear Koch strap meshes are removed; Niko's own harness is retained.
+The rear WSO now uses the approved MiG-29-derived ejection poses. Niko follows the parachute descent, landing, recovery and walking sequence with her own shoulder spacing and arm lengths. The skirt lies across the thighs in the occupied seat and covers the hips through the airborne and ground poses.
 
-- Keeps the approved warm textures, saturated pink hair and normal day/night face lighting.
-- Keeps hair shadow casting disabled; no face self-illumination is added.
-- Keeps all eight dedicated rear ejection personnel/occupied-seat models and their native animation graphs.
-- Front-seat straps, generic DCS pilots, front-seat ejected personnel and avionics are unchanged.
-- Includes the existing portrait, Jester voice, Tape Player and FOX PLATOON v0.13 livery.
+The update replaces the four dedicated occupied rear-seat models and the four separate rear WSO models. After seat separation, the seat occupant follows the original visibility switch. All four detail levels carry the fitted skirt. Both ground movement inputs use the approved walking cycle.
 
-## Install and restore
+The full installer includes the rear cockpit and exterior character, first-person body, Jester portrait and voice, Tape Player tracks and FOX PLATOON livery.
 
-Close DCS, run **F4E-Niko-WSO-v9.exe**, select the DCS installation and active Saved Games profile, then choose **Install All**. Keep **NikoWSO_Backups** and use **Restore All** to undo the package. All interface text and messages are in English.
+## Install or restore
 
-Supported previous versions and the approved temporary harness fix are accepted. Original model restoration baselines are retained, and unrelated avionics script content is preserved when merging Niko's marked script sections.
-
-The four changed seated/cockpit model files remove only the duplicate rear strap meshes. Other geometry, material properties, animation nodes and connectors are unchanged. All other v8 payload resources are retained unchanged.
-
-In-game ejection landing/movement behavior is not newly verified. External Jester animation troubleshooting remains deferred.
+Close DCS and run **F4E-Niko-WSO-v10.exe**. Select the DCS installation and active Saved Games profile. Choose **Install All** to install or upgrade, or **Restore All** to restore the original files. Keep the **NikoWSO_Backups** folder from the first installation.
 
 ## Validation
 
-All package hashes passed. The actual installer passed v8-to-v9 upgrade, repeated installation, conflict refusal, exact restoration and repeated restoration checks for every model, texture and script, plus a representative dynamic resource. Unchanged voice/music/livery bulk was covered by the complete v8 installer test. Unrelated avionics script content was preserved.
+The eight exported models were checked against the reviewed Blender animation. The maximum skirt control-point deviation over the sampled animation was 0.26 mm. Character visibility and retained seat and parachute geometry were checked at each detail level. Confirmation of the ejection sequence inside a live F-4E mission is pending.

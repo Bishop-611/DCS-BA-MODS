@@ -2,13 +2,17 @@
 
 [All projects](../README.md)
 
-**Current version: v9**
+**Current version: v10**
 
 Complete Niko rear-seat WSO replacement package for the Heatblur F-4E.
 
 ## Download
 
-[Download v9](https://github.com/Bishop-611/DCS-BA-MODS/releases/tag/f4e-niko-wso-v9). Select **F4E-Niko-WSO-v9.exe** and its SHA-256 file from the release assets.
+[Download v10](https://github.com/Bishop-611/DCS-BA-MODS/releases/tag/f4e-niko-wso-v10). Select **F4E-Niko-WSO-v10.exe** and its SHA-256 file from the release assets.
+
+## Rear ejection update
+
+The occupied rear seat and separate rear WSO now use the reviewed Niko ejection poses. The front skirt rests across the thighs during ejection. The rear panels follow the hips during descent, landing and walking. All four ejection detail levels include the corrected garment.
 
 ## Included components
 
