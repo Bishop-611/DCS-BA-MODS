@@ -41,3 +41,7 @@ The character retains a 160 cm soles-to-crown scale, excluding ears and halo. LO
 ## License
 
 Third-party materials retain their respective terms. See the repository [license](../LICENSE).
+
+## v8 validation
+
+The complete isolated installation/restoration test passed, including repeat operations, conflict protection, pre-existing resource restoration, new-file removal and unrelated avionics script preservation. All payload hashes and prior v7 manifest compatibility passed.

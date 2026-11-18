@@ -19,3 +19,5 @@ The installer accepts supported prior Niko versions and the approved temporary t
 Warm textures and hair-shadow changes were accepted after a temporary game installation. Ejection exports preserve native animation graphs and non-character geometry; their actual in-game landing/movement behavior has not been newly verified. Native animation preservation does not prove every post-landing object remains the same model. No generic pilot replacement is used to work around that limitation.
 
 External Jester animation troubleshooting was explicitly deferred and is not presented as fixed by this release.
+
+The complete isolated installer test passed: install, repeated install, conflict refusal, exact resource restoration, repeated restore and preservation of unrelated avionics script content. Package hashes and prior v7 manifest compatibility also passed.
