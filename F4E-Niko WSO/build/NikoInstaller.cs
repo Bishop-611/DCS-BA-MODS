@@ -92,16 +92,16 @@ public class Package:IDisposable {
   foreach(var f in files)if(!f.patch&&f!=conflict&&Hash(Location(f,root,saved))!=f.after)throw new Exception("Conflict changed another file");Extract(Entry(conflict,"after"),ct,conflict.after);
   Apply(root,saved,false,silent);Apply(root,saved,false,silent);
   foreach(var f in files){string target=Location(f,root,saved);if(f.patch){if(File.ReadAllText(target)!=scripts[f.Key])throw new Exception("Avionics changed");}else if(Hash(target)!=original[f.Key])throw new Exception("Restore mismatch: "+f.Key);}
-  File.WriteAllText(Path.Combine(root,"test-result.txt"),"PASS: all components; v5 upgrade; repeat install/restore; conflict refusal; exact pre-existing addon restoration; new addon removal; user avionics preserved; actual game untouched.");
+  File.WriteAllText(Path.Combine(root,"test-result.txt"),"PASS: all components; repeat install/restore; conflict refusal; exact pre-existing addon restoration; new addon removal; user avionics preserved; actual game untouched.");
  }
 }
 public class MainForm:Form {
  TextBox game=new TextBox(),saved=new TextBox(),status=new TextBox();Button install=new Button(),restore=new Button();Panel panel=new Panel();bool busy;
  public MainForm(){
-  Text=Package.LiveryOnly?"FOX PLATOON - Temporary Livery Upgrade":"F4E-Niko WSO v10";Icon=Icon.ExtractAssociatedIcon(Assembly.GetExecutingAssembly().Location);ClientSize=new Size(1120,700);FormBorderStyle=FormBorderStyle.FixedSingle;MaximizeBox=false;StartPosition=FormStartPosition.CenterScreen;Font=new Font("Segoe UI",10);DoubleBuffered=true;
+  Text=Package.LiveryOnly?"FOX PLATOON - Temporary Livery Upgrade":"F4E-Niko WSO v11";Icon=Icon.ExtractAssociatedIcon(Assembly.GetExecutingAssembly().Location);ClientSize=new Size(1120,700);FormBorderStyle=FormBorderStyle.FixedSingle;MaximizeBox=false;StartPosition=FormStartPosition.CenterScreen;Font=new Font("Segoe UI",10);DoubleBuffered=true;
   using(var s=Assembly.GetExecutingAssembly().GetManifestResourceStream("background.png"))BackgroundImage=new Bitmap(s);BackgroundImageLayout=ImageLayout.Stretch;
   panel.SetBounds(724,24,372,652);panel.BackColor=Color.FromArgb(28,30,44);panel.ForeColor=Color.White;Controls.Add(panel);
-  LabelAt(Package.LiveryOnly?"FOX PLATOON":"F4E-Niko WSO",24,20,324,62,25,FontStyle.Bold);LabelAt("F-4E  /  REAR WSO",28,84,320,28,12,FontStyle.Bold);LabelAt(Package.LiveryOnly?"TEMPORARY UPGRADE  /  v0.13":"COMPLETE PACKAGE  /  v10",28,125,320,25,10,FontStyle.Bold);
+  LabelAt(Package.LiveryOnly?"FOX PLATOON":"F4E-Niko WSO",24,20,324,62,25,FontStyle.Bold);LabelAt("F-4E  /  REAR WSO",28,84,320,28,12,FontStyle.Bold);LabelAt(Package.LiveryOnly?"TEMPORARY UPGRADE  /  v0.13":"COMPLETE PACKAGE  /  v11",28,125,320,25,10,FontStyle.Bold);
   LabelAt(Package.LiveryOnly?"Livery textures only\nDarker camouflage\nEnhanced rivets and panel seams\nExisting WSO and audio retained":"Rear-seat model & first-person body\nJester portrait & voice\nTape Player music\nFOX PLATOON v0.13 livery",28,160,320,100,11,FontStyle.Regular);
   LabelAt("DCS WORLD FOLDER",28,278,310,22,9,FontStyle.Bold);game.Text="";AddPath(game,304);
   LabelAt("SAVED GAMES PROFILE",28,351,310,22,9,FontStyle.Bold);string home=Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);saved.Text=Path.Combine(home,@"Saved Games\DCS");AddPath(saved,377);

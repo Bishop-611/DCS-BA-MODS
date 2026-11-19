@@ -1,15 +1,30 @@
-# F4E-Niko WSO v10
+# F4E-Niko WSO v11
 
-The rear WSO now uses the approved MiG-29-derived ejection poses. Niko follows the parachute descent, landing, recovery and walking sequence with her own shoulder spacing and arm lengths. The skirt lies across the thighs in the occupied seat and covers the hips through the airborne and ground poses.
+The full package installs the Heatblur F-4E rear-seat character and first-person body, Niko's Jester portrait and voice, nine Tape Player tracks and the FOX PLATOON v0.13 livery.
 
-The update replaces the four dedicated occupied rear-seat models and the four separate rear WSO models. After seat separation, the seat occupant follows the original visibility switch. All four detail levels carry the fitted skirt. Both ground movement inputs use the approved walking cycle.
+## Cockpit
 
-The full installer includes the rear cockpit and exterior character, first-person body, Jester portrait and voice, Tape Player tracks and FOX PLATOON livery.
+Niko's right hand wraps around the control stick, her left hand grips the throttle and both feet follow the rudder pedals. The loafer openings and heel cups have been reshaped to fit the ankles on the cockpit model. The rear first-person eye point is 6 mm higher and remains within the model's eye height.
+
+## Rear ejection
+
+At seat exit, while Niko is still attached to the dedicated rear ejection seat, her hands and the skirt across her thighs use the revised pose at all four detail levels. After separation, the seat follows the original occupant visibility switch. The separate rear WSO retains the reviewed descent, landing and walking poses. The package preserves the generic pilot models, front-seat crew and avionics.
+
+## Lighting
+
+Niko retains warm skin and saturated pink hair. Hair and face layers have shadow casting disabled. The face responds to daylight and darkness without self-illumination. The halo retains its glow.
 
 ## Install or restore
 
-Close DCS and run **F4E-Niko-WSO-v10.exe**. Select the DCS installation and active Saved Games profile. Choose **Install All** to install or upgrade, or **Restore All** to restore the original files. Keep the **NikoWSO_Backups** folder from the first installation.
+1. Close DCS and run the v11 installer. GitHub names the download F4E-Niko.WSO.exe. The same installer is named F4E-Niko WSO.exe in the local release folder.
+2. Select the DCS World installation containing the Heatblur F-4E and the active DCS Saved Games profile.
+3. Choose Install All to install or upgrade all five components together.
+4. Keep the NikoWSO_Backups folder in the DCS installation. To undo the installation, close DCS, select the same installation and profile, and choose Restore All.
+
+The installer preserves the original backups during repeat installations. If it reports a file conflict, review the named file before retrying. If you use FOX SENSE alongside this package, leave its optional portrait replacement unchecked.
 
 ## Validation
 
-The eight exported models were checked against the reviewed Blender animation. The maximum skirt control-point deviation over the sampled animation was 0.26 mm. Character visibility and retained seat and parachute geometry were checked at each detail level. Confirmation of the ejection sequence inside a live F-4E mission is pending.
+The exported cockpit model was checked at 63 control settings. The hands and feet followed their controls, and neither stocking intersected its shoe across the sampled inputs. Both shoe soles cleared their pedal surfaces at neutral. The occupied rear-seat hand and skirt pose was also checked against the model. A live F-4E mission check of the v11 cockpit and ejection changes is pending.
+
+The final installer passed a clean installation, an upgrade from v10 and restoration in isolated DCS folders. All 15,310 managed files were checked in both full-package tests. Repeat installation and restoration, conflict detection and preservation of existing user files also passed. Both intermediate face-shadow updates were accepted in separate upgrade tests.
