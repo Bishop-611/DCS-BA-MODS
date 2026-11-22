@@ -43,8 +43,11 @@ jobs:
             gh release upload $tag (Join-Path $folder $name) --clobber
             if($LASTEXITCODE){throw 'Asset upload failed'}
           }
-          $release=gh api "repos/$env:GITHUB_REPOSITORY/releases/tags/$tag" | ConvertFrom-Json
+          # The tag lookup does not resolve an unpublished draft; use its list entry.
+          $releases=gh api "repos/$env:GITHUB_REPOSITORY/releases?per_page=100" | ConvertFrom-Json
           if($LASTEXITCODE){throw 'Release verification request failed'}
+          $release=$releases|Where-Object tag_name -eq $tag
+          if(!$release -or @($release).Count -ne 1){throw 'Draft release not found uniquely'}
           foreach($name in $names){
             $asset=$release.assets|Where-Object name -eq $name
             $file=Join-Path $folder $name
