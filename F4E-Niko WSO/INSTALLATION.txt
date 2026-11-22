@@ -1,30 +1,12 @@
-# F4E-Niko WSO v11
+F4E-Niko WSO v11 - Installation and restoration
 
-The full package installs the Heatblur F-4E rear-seat character and first-person body, Niko's Jester portrait and voice, nine Tape Player tracks and the FOX PLATOON v0.13 livery.
+1. Close DCS and run F4E-Niko.WSO.exe.
+2. Select the DCS World installation containing the Heatblur F-4E and the active Saved Games profile.
+3. Choose Install All to install or upgrade the character, portrait, voice, music and livery together.
+4. Keep NikoWSO_Backups in the DCS installation. To uninstall, close DCS, select the same installation/profile, and choose Restore All.
 
-## Cockpit
+Repeat installation preserves the original backups. Unsupported files or conflicting edits stop installation. Review the named file before retrying; do not overwrite another mod's changes or restore an entire old shared Lua file.
 
-Niko's right hand wraps around the control stick, her left hand grips the throttle and both feet follow the rudder pedals. The loafer openings and heel cups have been reshaped to fit the ankles on the cockpit model. The rear first-person eye point is 6 mm higher and remains within the model's eye height.
+If using FOX SENSE, leave its optional portrait replacement unchecked. The installer does not install FOX SENSE or Modern Avionics.
 
-## Rear ejection
-
-At seat exit, while Niko is still attached to the dedicated rear ejection seat, her hands and the skirt across her thighs use the revised pose at all four detail levels. After separation, the seat follows the original occupant visibility switch. The separate rear WSO retains the reviewed descent, landing and walking poses. The package preserves the generic pilot models, front-seat crew and avionics.
-
-## Lighting
-
-Niko retains warm skin and saturated pink hair. Hair and face layers have shadow casting disabled. The face responds to daylight and darkness without self-illumination. The halo retains its glow.
-
-## Install or restore
-
-1. Close DCS and run the v11 installer. GitHub names the download F4E-Niko.WSO.exe. The same installer is named F4E-Niko WSO.exe in the local release folder.
-2. Select the DCS World installation containing the Heatblur F-4E and the active DCS Saved Games profile.
-3. Choose Install All to install or upgrade all five components together.
-4. Keep the NikoWSO_Backups folder in the DCS installation. To undo the installation, close DCS, select the same installation and profile, and choose Restore All.
-
-The installer preserves the original backups during repeat installations. If it reports a file conflict, review the named file before retrying. If you use FOX SENSE alongside this package, leave its optional portrait replacement unchecked.
-
-## Validation
-
-The exported cockpit model was checked at 63 control settings. The hands and feet followed their controls, and neither stocking intersected its shoe across the sampled inputs. Both shoe soles cleared their pedal surfaces at neutral. The occupied rear-seat hand and skirt pose was also checked against the model. A live F-4E mission check of the v11 cockpit and ejection changes is pending.
-
-The final installer passed a clean installation, an upgrade from v10 and restoration in isolated DCS folders. All 15,310 managed files were checked in both full-package tests. Repeat installation and restoration, conflict detection and preservation of existing user files also passed. Both intermediate face-shadow updates were accepted in separate upgrade tests.
+The v11 cockpit and ejection changes passed offline checks; live mission confirmation is pending.
