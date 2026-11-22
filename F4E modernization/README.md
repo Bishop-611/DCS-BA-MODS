@@ -19,11 +19,4 @@ Exit DCS. Run the installer, select your DCS World folder and active Saved Games
 
 Offline regression, package integrity, and first-time installation checks passed. Install, Check status, and Restore were tested against a clean supported DCS file set and an empty Saved Games profile. Live DCS launch behavior and multiplayer compatibility are pending verification.
 
-## Legacy 1.1.43 downloads
-
-- [Windows installer](F4E-Modern-Avionics-1.1.43.exe)
-- [Manual ZIP](F4E-Modern-Avionics-1.1.43-Pure-Manual.zip)
-- [Manual installation guide](MANUAL-INSTALLATION.txt)
-- [Legacy SHA-256 checksums](SHA256.txt)
-
 [Report an issue](https://github.com/Bishop-611/DCS-BA-MODS/issues) · [License](../LICENSE)

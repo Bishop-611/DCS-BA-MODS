@@ -1,6 +1,0 @@
-F4E Modern Avionics 1.1.43
-EXE: close DCS, select your game root and active Saved Games profile, then Install.
-Use Check status to verify, Restore to uninstall. Keep installation backups.
-PURE MANUAL: see MANUAL-INSTALLATION.txt. No PowerShell or EXE is required.
-Do not layer unmanaged manual edits over an EXE-managed installation.
-Restore the previous edition first when switching installation methods.
