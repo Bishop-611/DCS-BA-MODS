@@ -1,0 +1,12 @@
+PASS: FOV GUI hook embedded and installed; foreign hook overwrite refused
+PASS: original Export.lua bytes and backup, idempotent reinstall, settings preserved
+PASS: installed folder and completion launch target exist
+PASS: logo PNG and ICO embedded, installed, and decoded successfully
+PASS: user setup background embedded and decoded successfully
+PASS: exact supplied 2048x2048 portrait installed, original backup restored byte-for-byte, reinstall and foreign-change protection
+PASS: unchecked portrait leaves existing game image unchanged
+PASS: configured path reuse, custom bin-mt path from DCS log, external Steam VDF and complete HUD install when portrait is unavailable
+PASS: profile paths with spaces, Jester log path configured correctly; app resides in Saved Games DCS Mods
+PASS: foreign Jester modification refused before external writes
+PASS: runtime initialization
+PASS: standard ZIP resource extraction, separate launcher bytes and launcher-to-HUD chain under RemoteSigned

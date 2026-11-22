@@ -1,0 +1,48 @@
+<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Width="2560" Height="1440" WindowStyle="None" ResizeMode="NoResize" AllowsTransparency="True" Background="Transparent" Topmost="True" ShowInTaskbar="False" ShowActivated="False" Focusable="False" Title="F4E FOX SENSE HUD">
+  <Viewbox Stretch="Fill">
+    <Canvas Name="Hud" Width="2560" Height="1440" Background="Transparent">
+      <Canvas.Resources>
+        <Style TargetType="TextBlock">
+          <Setter Property="Foreground" Value="#83FF9B" />
+          <Setter Property="FontFamily" Value="Consolas" />
+          <Setter Property="FontSize" Value="13" />
+        </Style>
+        <Style TargetType="Line">
+          <Setter Property="Stroke" Value="#83FF9B" />
+          <Setter Property="StrokeThickness" Value="1.5" />
+        </Style>
+      </Canvas.Resources>
+      <Canvas Name="FlightData" Visibility="Collapsed">
+        <Border Name="SpeedBox" Canvas.Left="571" Canvas.Top="440" Width="141" Height="54" BorderBrush="#83FF9B" BorderThickness="1.5"><TextBlock Name="OwnSpeed" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center" /></Border>
+        <TextBlock Name="OwnHeading" Canvas.Left="1848" Canvas.Top="392" FontSize="32" />
+        <Border Name="AltitudeBox" Canvas.Left="1848" Canvas.Top="440" Width="160" Height="54" BorderBrush="#83FF9B" BorderThickness="1.5"><TextBlock Name="OwnAltitude" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center" /></Border>
+        <TextBlock Name="AltitudeRadarMarker" Text="R" Canvas.Left="2020" Canvas.Top="449" FontSize="32" Visibility="Collapsed" />
+        <TextBlock Name="OwnAlpha" Canvas.Left="660" Canvas.Top="794" FontSize="32" />
+        <TextBlock Name="OwnMach" Canvas.Left="660" Canvas.Top="840" FontSize="32" />
+        <TextBlock Name="OwnG" Canvas.Left="660" Canvas.Top="886" FontSize="32" />
+      </Canvas>
+      <Canvas Name="TrackLayer" />
+      <Canvas Name="DatalinkOverlayLayer" />
+      <Canvas Name="MissileLayer" />
+      <TextBlock Name="MissileStatus" Canvas.Left="160" Canvas.Top="1300" FontSize="12" Text="JESTER MISSILES / WAITING" Visibility="Collapsed" />
+      <TextBlock Name="DatalinkStatus" Canvas.Left="880" Canvas.Top="1340" Width="800" TextAlignment="Center" Text="NO LIVE POSITION DATA" FontSize="13" Visibility="Collapsed" />
+      <Canvas>
+        <TextBlock Name="Source" Visibility="Collapsed" />
+        <Canvas Name="RwrCueLayer" />
+        <Canvas Name="Threat" Visibility="Hidden">
+          <Polyline Name="Sector" Visibility="Collapsed" Stroke="#83FF9B" StrokeThickness="3" />
+          <Line Name="SectorStart" Visibility="Collapsed" Stroke="#83FF9B" StrokeThickness="2" />
+          <Line Name="SectorEnd" Visibility="Collapsed" Stroke="#83FF9B" StrokeThickness="2" />
+          <TextBlock Name="BearingLabel" Visibility="Collapsed" FontSize="13" />
+        </Canvas>
+        <Border Canvas.Left="1730" Canvas.Top="90" Width="700" Padding="6">
+          <StackPanel>
+            <TextBlock Name="Status" Text="NO LIVE RWR DATA" FontSize="17" TextAlignment="Center" Visibility="Collapsed" />
+            <TextBlock Name="Detail" Text="Waiting for Jester RWR" FontSize="13" TextAlignment="Center" Visibility="Collapsed" />
+          </StackPanel>
+        </Border>
+        <TextBlock Name="AudioLabel" Visibility="Collapsed" Text="AUDIO ON" />
+      </Canvas>
+    </Canvas>
+  </Viewbox>
+</Window>

@@ -2,17 +2,25 @@
 
 [All projects](../README.md)
 
-**Current stable version: 0.10.12**
+**Current release: 0.10.13**
 
 FOX SENSE is a situational-awareness overlay for DCS World, designed to support older-generation jets facing modern threats. Available information depends on aircraft data and mission/server export permissions. Jester integration and the optional subtitle portrait apply to the F-4E.
 
-[Download FOX SENSE 0.10.12](https://github.com/Bishop-611/DCS-BA-MODS/releases/tag/fox-sense-v0.10.12)
+[Download FOX SENSE 0.10.13](https://github.com/Bishop-611/DCS-BA-MODS/releases/tag/fox-sense-v0.10.13)
+
+## Adaptive display proportions
+
+0.10.13 automatically follows the actual DCS client-window dimensions. HUD text, target symbols and the SA map keep their proportions on ultrawide and other aspect ratios without moving projected target centers. No fixed resolution preset is required. Camera/FOV calibration and export rates are unchanged.
+
+Offline checks cover 3440x1440, 5120x1440, normal and narrow aspect ratios, resizing and size settings. This is not a claim of in-game acceptance or a fix for unrelated head-motion alignment issues.
+
+[Editable source and build instructions](Development/README.md) · [Release notes](RELEASE-0.10.13.md)
 
 ## Downloads
 
-- **FOX-SENSE-0.10.12-Setup.exe**: the self-contained guided installer.
-- **FOX-SENSE-0.10.12-EXE.zip**: the same installer, this English guide and the license.
-- **FOX-SENSE-0.10.12-Manual.zip**: manual file-copy installation without the Setup EXE. Follow its English `README.txt`.
+- **FOX-SENSE-0.10.13-Setup.exe**: the self-contained guided installer.
+- **FOX-SENSE-0.10.13-EXE.zip**: the same installer, this English guide and the license.
+- **FOX-SENSE-0.10.13-Manual.zip**: manual file-copy installation without the Setup EXE. Follow its English `README.txt`.
 - **SHA256SUMS.txt**: SHA-256 checksums for all downloads.
 
 Use one installation method and do not run multiple copies. GitHub's automatically generated source archives are not installation packages.
@@ -20,7 +28,7 @@ Use one installation method and do not run multiple copies. GitHub's automatical
 ## Guided installation / update
 
 1. Close DCS and FOX SENSE. Back up your installed FOX SENSE folder, profile `Scripts/Export.lua`, existing Jester mod scripts, `Scripts/Hooks/FoxViewFov.lua` and files under `Scripts/F4RwrLink` if present.
-2. Run `FOX-SENSE-0.10.12-Setup.exe`, directly or after extracting the EXE ZIP.
+2. Run `FOX-SENSE-0.10.13-Setup.exe`, directly or after extracting the EXE ZIP.
 3. Select your **DCS Saved Games profile**, normally `C:\Users\YOUR_WINDOWS_USER\Saved Games\DCS`. This is not the DCS game installation directory. Use an application subfolder under that profile's `Mods` folder.
 4. Check your F-4E Jester mods location if using that integration, normally `Saved Games\DCS_F4E\jester\mods`.
 5. Leave **Replace Jester portrait (optional)** unchecked to keep your current subtitle portrait. This does not replace the 3D crew model.
@@ -42,7 +50,7 @@ Click the draggable FOX logo to open the menu. **JHMCS markers** controls target
 
 Windows and DCS World are required. Data availability depends on the aircraft, mission and server export permissions. Cockpit-only visibility uses camera proximity rather than an exact camera-mode identifier. VR and custom multi-camera viewport alignment are not confirmed.
 
-World observations now update at 10 Hz, which can add about 100 ms of discovery delay at normal simulation speed. The maintainer has accepted 0.10.12 as stable. Compatibility still depends on DCS updates, display configuration and server settings; this status does not imply universal IC or VR compatibility.
+World observations now update at 10 Hz, which can add about 100 ms of discovery delay at normal simulation speed. The adaptive-display update passed offline checks; live ultrawide appearance is awaiting user confirmation. Compatibility still depends on DCS updates, display configuration and server settings; this status does not imply universal IC or VR compatibility.
 
 ## Removal / restoration
 

@@ -1,0 +1,17 @@
+{
+    "version":  1,
+    "values":  {
+                   "FlightDataEnabled": true,
+                   "RwrSize":  1.5808833223467369,
+                   "RwrZoom":  1,
+                   "Audio":  true,
+                   "Size":  1,
+                   "AircraftSize":  1.5054713249835203,
+                   "MissileSize":  1,
+                   "MissileZoom":  0.76796308503625588,
+                   "CenterZoom":  0.76796308503625588,
+                   "FontScale":  1,
+                   "DatalinkEnabled":  true,
+                   "Opacity":  0.76470006591957829
+               }
+}

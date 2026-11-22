@@ -1,0 +1,1 @@
+PASS: 39 packaged text files scanned; no user/developer absolute paths; adaptive layout included; development tests excluded; executable private-path scan passed.

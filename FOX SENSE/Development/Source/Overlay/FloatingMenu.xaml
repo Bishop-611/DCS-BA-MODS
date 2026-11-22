@@ -1,0 +1,18 @@
+<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Width="58" Height="58" WindowStyle="None" ResizeMode="NoResize" AllowsTransparency="True" Background="Transparent" Topmost="True" ShowInTaskbar="False" ShowActivated="False" Focusable="False" Title="FOX menu">
+ <Grid Name="LogoHitArea" ToolTip="Click: settings / Drag: move">
+  <Canvas Name="RingRotor" Width="58" Height="58" RenderTransformOrigin="0.5,0.5" IsHitTestVisible="False">
+   <Canvas.RenderTransform><RotateTransform/></Canvas.RenderTransform>
+   <Canvas.Triggers><EventTrigger RoutedEvent="Loaded"><BeginStoryboard><Storyboard>
+    <DoubleAnimation Timeline.DesiredFrameRate="30" Storyboard.TargetProperty="(UIElement.RenderTransform).(RotateTransform.Angle)" From="0" To="360" Duration="0:0:8" RepeatBehavior="Forever"/>
+   </Storyboard></BeginStoryboard></EventTrigger></Canvas.Triggers>
+   <Ellipse Width="49" Height="49" Canvas.Left="4.5" Canvas.Top="4.5" Stroke="#005CFF" StrokeThickness="3"><Ellipse.Effect><DropShadowEffect Color="#00BFFF" BlurRadius="7" ShadowDepth="0" Opacity="0.9"/></Ellipse.Effect></Ellipse>
+   <Ellipse Width="45" Height="45" Canvas.Left="6.5" Canvas.Top="6.5" Stroke="#00F6FF" StrokeThickness="1.2" Opacity="0.9"/>
+   <Ellipse Width="41" Height="41" Canvas.Left="8.5" Canvas.Top="8.5" Stroke="#087FFF" StrokeThickness="0.7"/>
+   <Ellipse Width="53" Height="53" Canvas.Left="2.5" Canvas.Top="2.5" Stroke="#00CFFF" StrokeThickness="0.6" Opacity="0.7"/>
+   <Path Data="M 6,29 A 23,23 0 0 1 40,9" Stroke="#45FFFF" StrokeThickness="2.5" StrokeStartLineCap="Round" StrokeEndLineCap="Round"/>
+   <Path Data="M 52,29 A 23,23 0 0 1 18,49" Stroke="#074BFF" StrokeThickness="2.5" StrokeStartLineCap="Round" StrokeEndLineCap="Round"/>
+  </Canvas>
+  <Ellipse Name="LogoDisc" Margin="11" Fill="#EE14251B" Stroke="#00CFFF" StrokeThickness="0.6"/>
+  <TextBlock Name="LogoFallback" Text="FOX" Foreground="#83FF9B" FontFamily="Consolas" FontWeight="Bold" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" IsHitTestVisible="False"/>
+ </Grid>
+</Window>

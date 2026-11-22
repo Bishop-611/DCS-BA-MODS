@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Width="1056" Height="624" FontFamily="Segoe UI" FontSize="14" Foreground="#EFF7FF" Opacity="0.75" ResizeMode="NoResize" Topmost="True" ShowActivated="False" Focusable="False" Title="F4E FOX SENSE" SizeToContent="WidthAndHeight">
+  <Window.Resources>
+    <Style TargetType="TextBlock">
+      <Setter Property="Foreground" Value="#EDF4FC" />
+    </Style>
+    <Style x:Key="Subhead" TargetType="TextBlock">
+      <Setter Property="Foreground" Value="#9BC9DC" />
+      <Setter Property="FontSize" Value="12" />
+      <Setter Property="FontWeight" Value="SemiBold" />
+    </Style>
+    <Style x:Key="Divider" TargetType="Border">
+      <Setter Property="Height" Value="1" />
+      <Setter Property="Background" Value="#42566D" />
+      <Setter Property="Margin" Value="0,2,0,12" />
+    </Style>
+    <Style TargetType="Button">
+      <Setter Property="Focusable" Value="False" />
+      <Setter Property="Foreground" Value="#F4F8FF" />
+      <Setter Property="Background" Value="#1A3046" />
+      <Setter Property="BorderBrush" Value="#48667D" />
+      <Setter Property="Padding" Value="5,5" />
+      <Setter Property="Margin" Value="1" />
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="Button">
+            <Border CornerRadius="5" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1" Padding="{TemplateBinding Padding}">
+              <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" RecognizesAccessKey="True" />
+            </Border>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+    <Style TargetType="CheckBox">
+      <Setter Property="Focusable" Value="False" />
+      <Setter Property="Foreground" Value="#EDF4FC" />
+    </Style>
+    <Style x:Key="Switch" TargetType="CheckBox">
+      <Setter Property="Width" Value="42" />
+      <Setter Property="Height" Value="23" />
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="CheckBox">
+            <Border Name="Track" CornerRadius="12" Background="#415066" BorderBrush="#718599" BorderThickness="1">
+              <Ellipse Name="Thumb" Width="15" Height="15" Fill="#EDF5FF" HorizontalAlignment="Left" Margin="3" />
+            </Border>
+            <ControlTemplate.Triggers>
+              <Trigger Property="IsChecked" Value="True">
+                <Setter TargetName="Track" Property="Background" Value="#237B9C" />
+                <Setter TargetName="Track" Property="BorderBrush" Value="#85DDF1" />
+                <Setter TargetName="Thumb" Property="HorizontalAlignment" Value="Right" />
+              </Trigger>
+            </ControlTemplate.Triggers>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+    <Style TargetType="Slider">
+      <Setter Property="Focusable" Value="False" />
+    </Style>
+  </Window.Resources>
+  <Viewbox Width="1040" Height="585" Stretch="Uniform">
+    <Grid Width="1040" Height="585" Background="#0C1522">
+      <Image Name="MenuBackground" Stretch="Uniform" />
+      <Border Background="#38091524" />
+      <Grid Margin="20,14,20,14">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="48" />
+          <RowDefinition />
+          <RowDefinition Height="56" />
+        </Grid.RowDefinitions>
+        <DockPanel>
+          <TextBlock Text="F4E FOX SENSE" FontSize="22" FontWeight="SemiBold" VerticalAlignment="Center" />
+        </DockPanel>
+        <Grid Grid.Row="1">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="320" />
+            <ColumnDefinition />
+            <ColumnDefinition Width="310" />
+          </Grid.ColumnDefinitions>
+          <Border Background="#DF0A1729" BorderBrush="#52627A" BorderThickness="1" CornerRadius="9" Padding="14">
+            <StackPanel>
+              <TextBlock Text="DATA / OVERLAY" FontSize="15" FontWeight="SemiBold" Margin="0,0,0,15" />
+              <DockPanel Margin="0,0,0,10">
+                <CheckBox Style="{StaticResource Switch}" IsChecked="False" DockPanel.Dock="Right" Name="ModernRwrEnabled" Focusable="False" />
+                <TextBlock Text="Enhanced data" VerticalAlignment="Center" />
+              </DockPanel>
+              <DockPanel Margin="0,0,0,10">
+                <CheckBox Style="{StaticResource Switch}" IsChecked="False" DockPanel.Dock="Right" Name="DatalinkEnabled" Focusable="False" />
+                <TextBlock Text="JHMCS markers" VerticalAlignment="Center" />
+              </DockPanel>
+              <DockPanel Margin="0,0,0,10">
+                <CheckBox Style="{StaticResource Switch}" IsChecked="False" DockPanel.Dock="Right" Name="DatalinkOverlayEnabled" Focusable="False" />
+                <TextBlock Text="Datalink overlay" VerticalAlignment="Center" />
+              </DockPanel>
+              <UniformGrid Columns="2" Margin="0,0,0,10">
+                <CheckBox Content="RWR bearings" IsChecked="True" Name="SaRwrEnabled" Focusable="False" />
+                <CheckBox Content="Aircraft types" IsChecked="True" Name="SaAircraftTypes" Focusable="False" />
+              </UniformGrid>
+              <Border Style="{StaticResource Divider}" />
+              <DockPanel Margin="0,0,0,2">
+                <TextBlock Foreground="#83D8EF" DockPanel.Dock="Right" Name="MapSizeValue">
+                  <TextBlock.Text>
+                    <Binding ElementName="DatalinkOverlayScale" Path="Value" StringFormat="{}{0:P0}" />
+                  </TextBlock.Text>
+                </TextBlock>
+                <TextBlock Text="Overlay size" />
+              </DockPanel>
+              <Slider Minimum="0.5" Maximum="2" Value="1" Height="23" Margin="0,0,0,7" Name="DatalinkOverlayScale" />
+              <TextBlock Text="OVERLAY POSITION" Style="{StaticResource Subhead}" />
+              <UniformGrid Columns="4" Margin="0,5,0,8">
+                <Button Content="Left" Name="MapLeft" />
+                <Button Content="Right" Name="MapRight" />
+                <Button Content="Up" Name="MapUp" />
+                <Button Content="Down" Name="MapDown" />
+              </UniformGrid>
+              <DockPanel Margin="0,0,0,2">
+                <TextBlock Foreground="#83D8EF" DockPanel.Dock="Right" Name="MapXValue">
+                  <TextBlock.Text>
+                    <Binding ElementName="DatalinkOverlayX" Path="Value" StringFormat="{}{0:0}" />
+                  </TextBlock.Text>
+                </TextBlock>
+                <TextBlock Text="Horizontal" />
+              </DockPanel>
+              <Slider Minimum="0" Maximum="2140" Value="180" Height="23" Margin="0,0,0,7" Name="DatalinkOverlayX" />
+              <DockPanel Margin="0,0,0,2">
+                <TextBlock Foreground="#83D8EF" DockPanel.Dock="Right" Name="MapYValue">
+                  <TextBlock.Text>
+                    <Binding ElementName="DatalinkOverlayY" Path="Value" StringFormat="{}{0:0}" />
+                  </TextBlock.Text>
+                </TextBlock>
+                <TextBlock Text="Vertical" />
+              </DockPanel>
+              <Slider Minimum="0" Maximum="1020" Value="880" Height="23" Margin="0,0,0,7" Name="DatalinkOverlayY" />
+              <Button Content="Reset overlay" Margin="1,1,1,0" Name="ResetDatalinkOverlay" />
+            </StackPanel>
+          </Border>
+          <Border Grid.Column="1" Background="#DF0A1729" BorderBrush="#52627A" BorderThickness="1" CornerRadius="9" Padding="14" Margin="12,0">
+            <StackPanel>
+              <TextBlock Text="SYMBOLS / CALIBRATION" FontSize="15" FontWeight="SemiBold" Margin="0,0,0,15" />
+              <TextBlock Text="AIRCRAFT" Style="{StaticResource Subhead}" />
+              <Grid Margin="0,4,0,8">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition />
+                  <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <StackPanel Margin="0,0,10,0">
+                  <DockPanel Margin="0,0,0,2">
+                    <TextBlock Foreground="#83D8EF" DockPanel.Dock="Right">
+                      <TextBlock.Text>
+                        <Binding ElementName="AircraftSize" Path="Value" StringFormat="{}{0:P0}" />
+                      </TextBlock.Text>
+                    </TextBlock>
+                    <TextBlock Text="Symbol size" />
+                  </DockPanel>
+                  <Slider Minimum="0.4" Maximum="3" Value="1" Height="23" Margin="0,0,0,7" Name="AircraftSize" />
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                  <DockPanel Margin="0,0,0,2">
+                    <TextBlock Text="" Foreground="#83D8EF" DockPanel.Dock="Right" />
+                    <TextBlock Text="Calibration" />
+                  </DockPanel>
+                  <Slider Minimum="0.25" Maximum="3" Value="1" Height="23" Margin="0,0,0,7" Name="CenterZoom" SmallChange="0.01" />
+                </StackPanel>
+              </Grid>
+              <TextBlock Text="MISSILE" Style="{StaticResource Subhead}" />
+              <Grid Margin="0,4,0,8">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition />
+                  <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <StackPanel Margin="0,0,10,0">
+                  <DockPanel Margin="0,0,0,2">
+                    <TextBlock Foreground="#83D8EF" DockPanel.Dock="Right">
+                      <TextBlock.Text>
+                        <Binding ElementName="MissileSize" Path="Value" StringFormat="{}{0:P0}" />
+                      </TextBlock.Text>
+                    </TextBlock>
+                    <TextBlock Text="Symbol size" />
+                  </DockPanel>
+                  <Slider Minimum="0.4" Maximum="3" Value="1" Height="23" Margin="0,0,0,7" Name="MissileSize" />
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                  <DockPanel Margin="0,0,0,2">
+                    <TextBlock Text="" Foreground="#83D8EF" DockPanel.Dock="Right" />
+                    <TextBlock Text="Calibration" />
+                  </DockPanel>
+                  <Slider Minimum="0.25" Maximum="3" Value="1" Height="23" Margin="0,0,0,7" Name="MissileZoom" SmallChange="0.01" />
+                </StackPanel>
+              </Grid>
+              <TextBlock Text="RWR" Style="{StaticResource Subhead}" />
+              <Grid Margin="0,4,0,8">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition />
+                  <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <StackPanel Margin="0,0,10,0">
+                  <DockPanel Margin="0,0,0,2">
+                    <TextBlock Foreground="#83D8EF" DockPanel.Dock="Right">
+                      <TextBlock.Text>
+                        <Binding ElementName="RwrSize" Path="Value" StringFormat="{}{0:P0}" />
+                      </TextBlock.Text>
+                    </TextBlock>
+                    <TextBlock Text="Symbol size" />
+                  </DockPanel>
+                  <Slider Minimum="0.4" Maximum="3" Value="1" Height="23" Margin="0,0,0,7" Name="RwrSize" />
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                  <DockPanel Margin="0,0,0,2">
+                    <TextBlock Text="" Foreground="#83D8EF" DockPanel.Dock="Right" />
+                    <TextBlock Text="Calibration" />
+                  </DockPanel>
+                  <Slider Minimum="0.25" Maximum="3" Value="1" Height="23" Margin="0,0,0,7" Name="RwrZoom" SmallChange="0.01" />
+                </StackPanel>
+              </Grid>
+              <Button Content="Reset calibration" Margin="1,0,1,10" Name="ResetAllCalibration" />
+              <Border Style="{StaticResource Divider}" />
+              <DockPanel Margin="0,0,0,2">
+                <CheckBox Style="{StaticResource Switch}" IsChecked="True" DockPanel.Dock="Right" Margin="8,0,0,0" Name="FlightDataEnabled" Focusable="False" />
+                <TextBlock Foreground="#83D8EF" DockPanel.Dock="Right" VerticalAlignment="Center" Text="{Binding ElementName=FlightDataScale, Path=Value, StringFormat={}{0:P0}}" />
+                <TextBlock Text="Flight data" VerticalAlignment="Center" />
+              </DockPanel>
+              <Slider Minimum="0.5" Maximum="1.5" Value="1" Height="23" Margin="0,0,0,7" Name="FlightDataScale" SmallChange="0.01" />
+              <DockPanel Margin="0,0,0,2">
+                <TextBlock Foreground="#83D8EF" DockPanel.Dock="Right" Name="OpacityValue">
+                  <TextBlock.Text>
+                    <Binding ElementName="Opacity" Path="Value" StringFormat="{}{0:P0}" />
+                  </TextBlock.Text>
+                </TextBlock>
+                <TextBlock Text="HUD opacity" />
+              </DockPanel>
+              <Slider Minimum="0.25" Maximum="1" Value="0.85" Height="23" Margin="0,0,0,7" Name="Opacity" />
+            </StackPanel>
+          </Border>
+          <Border Grid.Column="2" Background="#DF0A1729" BorderBrush="#52627A" BorderThickness="1" CornerRadius="9" Padding="14">
+            <StackPanel>
+              <TextBlock Text="WARNINGS / AUDIO" FontSize="15" FontWeight="SemiBold" Margin="0,0,0,15" />
+              <DockPanel Margin="0,0,0,10">
+                <CheckBox Style="{StaticResource Switch}" IsChecked="True" DockPanel.Dock="Right" Name="Audio" Focusable="False" />
+                <TextBlock Text="Warning sounds" VerticalAlignment="Center" />
+              </DockPanel>
+              <DockPanel Margin="0,0,0,2">
+                <TextBlock Foreground="#83D8EF" DockPanel.Dock="Right" Name="VolumeValue">
+                  <TextBlock.Text>
+                    <Binding ElementName="AudioVolume" Path="Value" StringFormat="{}{0:P0}" />
+                  </TextBlock.Text>
+                </TextBlock>
+                <TextBlock Text="Volume" />
+              </DockPanel>
+              <Slider Minimum="0" Maximum="1" Value="1" Height="23" Margin="0,0,0,7" Name="AudioVolume" />
+              <Border Style="{StaticResource Divider}" />
+              <DockPanel Margin="0,0,0,10">
+                <CheckBox Style="{StaticResource Switch}" IsChecked="True" DockPanel.Dock="Right" Name="RwrWarning" Focusable="False" />
+                <TextBlock Text="RWR warning" VerticalAlignment="Center" />
+              </DockPanel>
+              <DockPanel>
+                <TextBlock Text="40 NM" DockPanel.Dock="Right" Foreground="#83D8EF" Name="DatalinkRangeValue" />
+                <TextBlock Text="SA / RWR range" Foreground="#C2D0DE" />
+              </DockPanel>
+              <UniformGrid Columns="3" Margin="0,4,0,12">
+                <Button Content="20 NM" Background="#1A3046" BorderBrush="#48667D" Name="Range20" />
+                <Button Content="40 NM" Background="#237B9C" BorderBrush="#8AE6FF" Name="Range40" />
+                <Button Content="60 NM" Background="#1A3046" BorderBrush="#48667D" Name="Range60" />
+              </UniformGrid>
+              <DockPanel Margin="0,0,0,10">
+                <CheckBox Style="{StaticResource Switch}" IsChecked="True" DockPanel.Dock="Right" Name="IncomingAudio" Focusable="False" />
+                <TextBlock Text="Launch warning" VerticalAlignment="Center" />
+              </DockPanel>
+              <DockPanel>
+                <TextBlock Text="60 NM" DockPanel.Dock="Right" Foreground="#83D8EF" Name="RwrRangeValue" />
+                <TextBlock Text="Launch warning range" Foreground="#C2D0DE" />
+              </DockPanel>
+              <UniformGrid Columns="3" Margin="0,4,0,12">
+                <Button Content="20 NM" Background="#1A3046" BorderBrush="#48667D" Name="LaunchRange20" />
+                <Button Content="40 NM" Background="#1A3046" BorderBrush="#48667D" Name="LaunchRange40" />
+                <Button Content="60 NM" Background="#237B9C" BorderBrush="#8AE6FF" Name="LaunchRange60" />
+              </UniformGrid>
+            </StackPanel>
+          </Border>
+        </Grid>
+        <Grid Grid.Row="2" Margin="0,12,0,0">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="300" />
+          </Grid.ColumnDefinitions>
+          <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+            <CheckBox Style="{StaticResource Switch}" IsChecked="True" Name="AllOverlaysToggle" Focusable="False" />
+            <TextBlock Text="HUD" Margin="9,0,14,0" VerticalAlignment="Center" Name="AllOverlaysLabel" />
+            <CheckBox Content="Cockpit only" IsChecked="True" VerticalAlignment="Center" Name="CockpitOnly" Focusable="False" />
+          </StackPanel>
+          <UniformGrid Grid.Column="1" Columns="2">
+            <Button Content="Hide menu" FontFamily="Segoe UI" FontSize="15" FontWeight="SemiBold" VerticalContentAlignment="Center" Name="HideControls" />
+            <Button Content="Exit" FontFamily="Segoe UI" FontSize="15" FontWeight="SemiBold" VerticalContentAlignment="Center" Background="#593542" BorderBrush="#B67A8C" Name="ExitApplication" />
+          </UniformGrid>
+        </Grid>
+      </Grid>
+      <StackPanel Visibility="Collapsed">
+        <Slider Name="SaRwrRangeNm" Minimum="20" Maximum="60" TickFrequency="20" IsSnapToTickEnabled="True" TickPlacement="BottomRight" Value="20" Height="30" Margin="0,4,0,8" Visibility="Collapsed" />
+        <Slider Name="FloatingMenuX" Minimum="-20000" Maximum="20000" Value="40" Visibility="Collapsed" />
+        <Slider Name="FloatingMenuY" Minimum="-20000" Maximum="20000" Value="180" Visibility="Collapsed" />
+        <ComboBox Name="DatalinkRange" SelectedValuePath="Tag" SelectedIndex="0" Visibility="Collapsed">
+          <ComboBoxItem Content="20 NM" Tag="20" />
+          <ComboBoxItem Content="40 NM" Tag="40" />
+          <ComboBoxItem Content="60 NM" Tag="60" />
+        </ComboBox>
+        <Button Name="ResetPosition" Content="Reset aircraft zoom" Margin="0,0,0,8" Visibility="Collapsed" />
+        <Button Name="ResetMissileZoom" Content="Reset missile zoom" Margin="0,4,0,0" Visibility="Collapsed" />
+        <Button Name="ResetRwrZoom" Content="Reset RWR zoom" Margin="0,4,0,0" Visibility="Collapsed" />
+        <Slider Name="LaunchWarningRangeNm" Minimum="20" Maximum="60" TickFrequency="20" IsSnapToTickEnabled="True" TickPlacement="BottomRight" Value="20" Height="30" Visibility="Collapsed" />
+        <Button Name="AlertRange20" Content="20 NM" Visibility="Collapsed" />
+        <Button Name="AlertRange40" Content="40 NM" Visibility="Collapsed" />
+        <Button Name="AlertRange60" Content="60 NM" Visibility="Collapsed" />
+        <Slider Name="Size" Minimum="0.6" Maximum="1.8" Value="1" Visibility="Collapsed" />
+        <Slider Name="FontScale" Minimum="0.6" Maximum="2.5" Value="1" Visibility="Collapsed" />
+        <TextBlock Name="FontValue" Visibility="Collapsed" />
+        <Slider Name="HorizontalFov" Minimum="30" Maximum="140" Value="90" Visibility="Collapsed" />
+        <Slider Name="MarkerScale" Minimum="0.5" Maximum="2.5" Value="1" Visibility="Collapsed" />
+        <Slider Name="OffsetX" Minimum="-500" Maximum="500" Value="0" Visibility="Collapsed" />
+        <Slider Name="OffsetY" Minimum="-300" Maximum="300" Value="0" Visibility="Collapsed" />
+        <Slider Name="AlertRangeNm" Minimum="20" Maximum="60" Value="20" Visibility="Collapsed" />
+      </StackPanel>
+    </Grid>
+  </Viewbox>
+</Window>
