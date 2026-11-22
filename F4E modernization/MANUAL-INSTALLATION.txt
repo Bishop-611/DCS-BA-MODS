@@ -1,0 +1,70 @@
+F4E Modern Avionics 1.2.31 - Manual Installation
+================================================
+For a clean Heatblur F-4E installation in DCS 2.9.31.29434.
+Use File Explorer, a text editor, and a local browser. The model patcher runs
+offline. This edition creates no installer receipt.
+
+DCS_ROOT is your DCS World installation folder.
+PROFILE is your active DCS folder under Saved Games, usually Saved Games/DCS.
+Start DCS once if your profile has not been created yet, then exit DCS.
+
+1. BEFORE INSTALLING
+Close DCS. Restore any installer-managed edition and remove older manual
+F4E Modern Avionics edits before continuing. Back up every file you will edit
+or replace, including all seven exterior models and any custom bindings.
+Save backups outside DCS and Saved Games. If an exact search does not match
+once, stop and check the game build and existing cockpit modifications.
+
+2. PREPARE THE SEVEN MODELS
+Open Patch-Models.html locally in a desktop browser. Select HB_F-4E.edm and
+HB_F-4E_Lod1.edm through HB_F-4E_Lod6.edm from
+DCS_ROOT/CoreMods/aircraft/F-4E/Shapes.
+Download all seven verified replacements into a separate folder. Verify that
+downloads retain the exact filenames, then copy them into Shapes. The patcher
+reads your local originals and does not send them anywhere.
+
+3. COPY PACKAGE FILES
+Copy the contents of DCS into DCS_ROOT and the contents of SavedGames into
+PROFILE. The result must include PROFILE/Scripts/F4ModernAvionics and
+PROFILE/Mods/tech/F4ModernAvionicsRwrResources/entry.lua. Game Lua paths are
+resolved from the active Saved Games profile.
+
+4. EDIT THE COCKPIT
+In DCS_ROOT/Mods/aircraft/F-4E/Cockpit:
+- Apply all six replacements from Merge-Snippets/device_init-REPLACEMENTS.txt
+  to device_init.lua. In the RWR creator line, spacing after the comma before
+  LockOn_Options may vary. The shown FIND uses no space after that comma.
+  Then append device_init-APPEND.txt. Device IDs 200-207 must be unused.
+- Append mainpanel_init-APPEND.txt to mainpanel_init.lua.
+- Append clickabledata-APPEND.txt to clickabledata.lua.
+
+5. EDIT AIRCRAFT REGISTRATION AND INPUTS
+- In DCS_ROOT/CoreMods/aircraft/F-4E/Entry/F-4E.lua, replace the single line
+  add_aircraft(F4E) with Merge-Snippets/aircraft-REPLACE-REGISTRATION.txt.
+- For every path in INPUT-PROFILES.txt, replace its final return res line.
+  Use Pilot-REPLACE-RETURN.txt for F-4E-Pilot files and WSO-REPLACE-RETURN.txt
+  for F-4E-WSO files. Do not append code after return.
+
+6. ADD EXPORT HOOKS
+Append Merge-Snippets/Export-APPEND.txt once to PROFILE/Scripts/Export.lua.
+Create Export.lua if absent. Preserve other export hooks.
+
+7. EXISTING CUSTOM BINDINGS
+The two INPUT-BINDING-MAP.tsv files list the old ID followed by the new ID.
+For existing Pilot and WSO .diff.lua files, use the matching map to replace
+exact quoted keys only. If both keys exist, resolve in DCS Controls. You can
+also rebind the affected controls in DCS. Empty profiles skip this step.
+
+8. TEST AND RESTORE
+Start DCS and enter the F-4E. Check radar, HUD, RWR and controls. The manual
+package was checked offline against the supported files. Live DCS behavior
+and multiplayer compatibility are pending verification.
+
+To uninstall, exit DCS. Restore the backed-up models, DSCG.fxo and game Lua
+files. If you made later edits to a shared Lua file, reverse only this mod's
+replacements and remove its appended blocks. Restore or reverse input ID
+changes. Remove the appended export block and remove Export.lua only if it was
+created by this installation and is now empty. Remove
+Scripts/F4ModernAvionics and Mods/tech/F4ModernAvionicsRwrResources from PROFILE
+if added by this package. DCS repair can restore original game files if you
+lose the game-file backups.
