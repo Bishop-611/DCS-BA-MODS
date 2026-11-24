@@ -1,4 +1,4 @@
-F4E Modern Avionics 1.2.31 - Manual Installation
+F4E Modern Avionics 1.2.36 - Manual Installation
 ================================================
 For a clean Heatblur F-4E installation in DCS 2.9.31.29434.
 Use File Explorer, a text editor, and a local browser. The model patcher runs
@@ -26,8 +26,9 @@ reads your local originals and does not send them anywhere.
 3. COPY PACKAGE FILES
 Copy the contents of DCS into DCS_ROOT and the contents of SavedGames into
 PROFILE. The result must include PROFILE/Scripts/F4ModernAvionics and
-PROFILE/Mods/tech/F4ModernAvionicsRwrResources/entry.lua. Game Lua paths are
-resolved from the active Saved Games profile.
+PROFILE/Mods/tech/F4ModernAvionicsRwrResources/entry.lua. Keep the Sounds
+folder next to entry.lua, including both its sdef and Effects subfolders.
+Game Lua paths are resolved from the active Saved Games profile.
 
 4. EDIT THE COCKPIT
 In DCS_ROOT/Mods/aircraft/F-4E/Cockpit:

@@ -2,24 +2,24 @@
 
 [All projects](../README.md)
 
-**Current version: 1.2.31** for the Heatblur F-4E in **DCS 2.9.31.29434**.
+**Current version: 1.2.36** for the Heatblur F-4E in **DCS 2.9.31.29434**.
 
-- [Windows installer](F4E-Modern-Avionics-1.2.31.exe)
-- [Pure manual ZIP](F4E-Modern-Avionics-1.2.31-Pure-Manual.zip)
+- [Windows installer](F4E-Modern-Avionics-1.2.36.exe)
+- [Pure manual ZIP](F4E-Modern-Avionics-1.2.36-Pure-Manual.zip)
 - [Manual installation guide](MANUAL-INSTALLATION.txt)
-- [SHA-256 checksums](SHA256-1.2.31.txt)
+- [SHA-256 checksums](SHA256-1.2.36.txt)
 
-## Changes in 1.2.31
+## Changes in 1.2.36
 
-- AIM-120B supports no-lock (Maddog) release and retains the existing STT path.
-- AGM-88 selection retains the last selected position when the emitter disappears. Press NWS to select another available target.
-- Includes the increased RWR audio gain from 1.2.30.
+- The pilot and WSO display knobs now adjust brightness, contrast and RWR volume from the current panel setting on the first mouse movement.
+- The TV display keeps the selected AGM-88 page through a brief gap in the station indication when another store remains.
+- The RWR System Test button now plays a single headphone tone when the panel is powered and audio is enabled.
 
 ## Windows installer
 
 Exit DCS. Run the installer, select your DCS World folder and active Saved Games profile, and choose **Install**. Use **Check status** to verify the installation or **Restore** to uninstall. Keep the installer-managed backups. Undo manual modifications before switching from a manual installation.
 
-Offline regression, package integrity, and first-time installation checks passed. Install, Check status, and Restore were tested against a clean supported DCS file set and an empty Saved Games profile. Live DCS launch behavior and multiplayer compatibility are pending verification.
+Fresh installation, upgrades from 1.2.31 and 1.2.35, and restoration passed offline checks. All 33 original files matched after restoration. Version 1.2.36 reached the cockpit in a local DCS session. Long mission loading times and intermittent early video between consecutive AGM-65Ds are still under investigation.
 
 ## Manual installation
 
