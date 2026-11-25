@@ -1,4 +1,4 @@
-F4E Modern Avionics 1.2.36 - Manual Installation
+F4E Modern Avionics 1.3.0 - Manual Installation
 ================================================
 For a clean Heatblur F-4E installation in DCS 2.9.31.29434.
 Use File Explorer, a text editor, and a local browser. The model patcher runs
@@ -7,6 +7,10 @@ offline. This edition creates no installer receipt.
 DCS_ROOT is your DCS World installation folder.
 PROFILE is your active DCS folder under Saved Games, usually Saved Games/DCS.
 Start DCS once if your profile has not been created yet, then exit DCS.
+
+With the display source on RADAR, select A/G and AGM-88 to show the HARM page.
+Multiple stations can be preselected. The HARM page follows the active store.
+All radar pages use sharp vector graphics. TV uses the original video pages and TV processing.
 
 1. BEFORE INSTALLING
 Close DCS. Restore any installer-managed edition and remove older manual
@@ -24,15 +28,15 @@ downloads retain the exact filenames, then copy them into Shapes. The patcher
 reads your local originals and does not send them anywhere.
 
 3. COPY PACKAGE FILES
-Copy the contents of DCS into DCS_ROOT and the contents of SavedGames into
-PROFILE. The result must include PROFILE/Scripts/F4ModernAvionics and
+Back up DCS_ROOT/Mods/aircraft/F-4E/fxo/DSCG.fxo. Copy DCS into DCS_ROOT
+and SavedGames into PROFILE by merging their contents. The result must include PROFILE/Scripts/F4ModernAvionics and
 PROFILE/Mods/tech/F4ModernAvionicsRwrResources/entry.lua. Keep the Sounds
 folder next to entry.lua, including both its sdef and Effects subfolders.
 Game Lua paths are resolved from the active Saved Games profile.
 
 4. EDIT THE COCKPIT
 In DCS_ROOT/Mods/aircraft/F-4E/Cockpit:
-- Apply all six replacements from Merge-Snippets/device_init-REPLACEMENTS.txt
+- Apply all four replacements from Merge-Snippets/device_init-REPLACEMENTS.txt
   to device_init.lua. In the RWR creator line, spacing after the comma before
   LockOn_Options may vary. The shown FIND uses no space after that comma.
   Then append device_init-APPEND.txt. Device IDs 200-207 must be unused.
