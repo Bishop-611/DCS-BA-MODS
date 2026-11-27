@@ -1,2 +1,0 @@
-c259f9ef72a75aaa2eddc6aa6c3e3ffb5430d06dc3fc6785a042b533a96533bb  F4E-Modern-Avionics-1.3.0.exe
-a9b318660485404189c4fd1406f6691abe59cf5e30ec5ff58a3c127ab87aaae9  F4E-Modern-Avionics-1.3.0-Pure-Manual.zip
