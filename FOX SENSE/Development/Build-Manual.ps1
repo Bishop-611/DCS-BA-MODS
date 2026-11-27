@@ -80,7 +80,7 @@ files as the EXE edition. Do not run both editions at the same time.
 
 3. IMPORTANT: edit Saved Games\DCS_F4E\jester\mods\F4RwrProbe.lua with a text
    editor. Replace the placeholder YOUR_DCS_PROFILE with the full
-   path to YOUR DCS profile's Logs\F4RwrProbe.log. For example:
+   path to YOUR DCS profile folder, leaving /Logs/F4RwrProbe.log after it:
    YOUR_DCS_PROFILE/Logs/F4RwrProbe.log
    If you use DCS.openbeta, use DCS.openbeta in that path. Preserve the [[ ]].
 
