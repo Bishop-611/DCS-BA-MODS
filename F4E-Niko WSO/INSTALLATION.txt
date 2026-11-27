@@ -1,4 +1,4 @@
-F4E-Niko WSO v12 - Installation and restoration
+F4E-Niko WSO v12.2 - Installation and restoration
 
 1. Close DCS and run F4E-Niko.WSO.exe.
 2. Select the DCS World installation containing the Heatblur F-4E and the active Saved Games profile.
@@ -9,4 +9,6 @@ Repeat installation preserves the original backups. Unsupported files or conflic
 
 If using FOX SENSE, leave its optional portrait replacement unchecked. The installer does not install FOX SENSE or Modern Avionics.
 
-v12 aligns the default rear cockpit camera and all built-in rear snap views to the upper edges of Niko's eyes. The installer preserves custom views in Saved Games.
+v12.2 aligns the default rear cockpit camera and all built-in rear snap views to the upper edges of Niko's eyes. The installer preserves custom views in Saved Games.
+
+Restart DCS after installing the Tape Player tracks so the game reloads its sound cache.

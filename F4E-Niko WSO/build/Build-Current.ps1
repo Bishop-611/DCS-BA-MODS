@@ -1,14 +1,14 @@
-# Rebuild the Windows installer with the current source and the published v12 assets.
+# Rebuild the Windows installer with the current source and the published v12.2 assets.
 param(
     [Parameter(Mandatory)][string]$ReleaseInstaller,
     [string]$OutputDirectory = (Join-Path (Split-Path $PSScriptRoot) 'Release')
 )
 $ErrorActionPreference = 'Stop'
 $source = (Get-Item -LiteralPath $ReleaseInstaller).FullName
-$checksums = Join-Path (Split-Path $PSScriptRoot) 'F4E-Niko-WSO-v12.sha256'
+$checksums = Join-Path (Split-Path $PSScriptRoot) 'F4E-Niko-WSO-v12.2.sha256'
 $record = (Get-Content -LiteralPath $checksums -Raw).TrimEnd()
 if ($record -notmatch '^(?<hash>[A-Fa-f0-9]{64})  F4E-Niko\.WSO\.exe$') {
-    throw 'The v12 release checksum record is missing or invalid.'
+    throw 'The v12.2 release checksum record is missing or invalid.'
 }
 $expected = $Matches['hash']
 $output = [IO.Path]::GetFullPath($OutputDirectory)
@@ -29,7 +29,7 @@ try {
     $file = [IO.File]::Open($source, 'Open', 'Read', 'Read')
     try {
         $actual = (Get-FileHash -InputStream $file -Algorithm SHA256).Hash
-        if ($actual -ne $expected) { throw 'The supplied installer does not match the published v12 SHA-256.' }
+        if ($actual -ne $expected) { throw 'The supplied installer does not match the published v12.2 SHA-256.' }
         $assembly = [Reflection.Assembly]::LoadFile($source)
         foreach ($asset in @('payload.zip','background.png')) {
             $embedded = $assembly.GetManifestResourceStream($asset)
@@ -56,6 +56,7 @@ try {
         '/r:System.Windows.Forms.dll', '/r:System.Drawing.dll',
         '/r:System.Web.Extensions.dll', '/r:System.IO.Compression.dll',
         (Join-Path $PSScriptRoot 'NikoInstaller.cs')
+        (Join-Path $PSScriptRoot 'TapeCache.cs')
     )
     & $compiler @options
     if ($LASTEXITCODE -ne 0) { throw "Installer compilation failed with exit code $LASTEXITCODE." }
