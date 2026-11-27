@@ -15,15 +15,15 @@ using System.IO.Compression;
 [assembly:AssemblyTitle("F4E FOX SENSE Setup")]
 [assembly:AssemblyProduct("F4E FOX SENSE")]
 [assembly:AssemblyDescription("DCS F-4E HUD installer")]
-[assembly:AssemblyVersion("0.10.13.0")]
-[assembly:AssemblyFileVersion("0.10.13.0")]
+[assembly:AssemblyVersion("0.10.14.0")]
+[assembly:AssemblyFileVersion("0.10.14.0")]
 
 public sealed class FoxConfig { public string AppRoot; public string DcsRoot; public string JesterRoot; public string Version; public string GameRoot; public string PortraitStatus; public bool ReplacePortrait; }
 public sealed class FoxChange { public string Target; public string Backup; public string InstalledHash; public bool Existed; }
 public sealed class FoxManifest { public List<FoxChange> Changes = new List<FoxChange>(); }
 internal sealed class FoxPlan { public string Target; public byte[] Bytes; public FoxChange Previous; }
 internal static partial class Fox {
-    const string Version="0.10.13";
+    const string Version="0.10.14";
     const string Loader="\r\n-- F4RWRLINK_BEGIN\r\ndofile(lfs.writedir() .. [[Scripts/F4RwrLink/ExportBridge.lua]])\r\n-- F4RWRLINK_END\r\n";
     static readonly UTF8Encoding Utf8=new UTF8Encoding(false);
     static readonly JavaScriptSerializer Json=new JavaScriptSerializer();
@@ -104,6 +104,10 @@ internal static partial class Fox {
             if(!String.IsNullOrWhiteSpace(c.GameRoot)&&p.Target.Equals(PortraitPath(c),StringComparison.OrdinalIgnoreCase)&&p.Previous==null)continue; // Explicit portrait replacement; original is backed up.
             string hash=Hash(File.ReadAllBytes(p.Target));
             if(p.Previous!=null&&p.Previous.InstalledHash==hash)continue;
+            // A game repair may restore the exact original portrait while leaving
+            // our installation record. Accept that baseline only when selected;
+            // retain its original backup and keep rejecting unknown edits.
+            if(c.ReplacePortrait&&!String.IsNullOrWhiteSpace(c.GameRoot)&&p.Target.Equals(PortraitPath(c),StringComparison.OrdinalIgnoreCase)&&p.Previous!=null&&p.Previous.Existed&&File.Exists(p.Previous.Backup)&&hash==Hash(File.ReadAllBytes(p.Previous.Backup)))continue;
             if(Array.IndexOf(KnownHashes,hash)<0)throw new IOException("This file differs from a known version and was not overwritten:\n"+p.Target);
         }
         return plans;
@@ -245,7 +249,7 @@ internal static partial class Fox {
         using(Form f=new Form{Text="F4E FOX SENSE - Setup",ClientSize=new Size(635,500),StartPosition=FormStartPosition.CenterScreen,FormBorderStyle=FormBorderStyle.FixedDialog,MaximizeBox=false,Icon=Icon.ExtractAssociatedIcon(Application.ExecutablePath)}){
             f.Font=new Font("Segoe UI",9);
             f.Controls.Add(LogoBox(24,10,64));
-            f.Controls.Add(new Label{Text="F4E FOX SENSE  0.10.13",Font=new Font("Segoe UI",16,FontStyle.Bold),Left=104,Top=20,Width=506,Height=36});
+            f.Controls.Add(new Label{Text="F4E FOX SENSE  0.10.14",Font=new Font("Segoe UI",16,FontStyle.Bold),Left=104,Top=20,Width=506,Height=36});
             string saved=Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),"Saved Games");
             TextBox app=Field(f,"Install location (Saved Games Mods folder)",Path.Combine(saved,@"DCS\Mods\F4E FOX SENSE"),78);
             TextBox dcs=Field(f,"DCS Saved Games profile",Path.Combine(saved,"DCS"),148);
@@ -297,6 +301,19 @@ internal static partial class Fox {
             string settings=Path.Combine(c.AppRoot,@"Runtime\HudSettings.json");string settingsBefore=File.ReadAllText(settings);
             Install(c,false,false);if(Hash(File.ReadAllBytes(export))!=Hash(installed)||Directory.GetFiles(Path.Combine(c.AppRoot,"Backups")).Length!=backups||File.ReadAllText(settings)!=settingsBefore)throw new Exception("Reinstall is not idempotent");
             log.AppendLine("PASS: original Export.lua bytes and backup, idempotent reinstall, settings preserved");
+            FoxChange portraitRecord=m.Changes.Find(delegate(FoxChange x){return x.Target==portrait;});
+            string portraitBackup=portraitRecord.Backup;
+            File.WriteAllBytes(portrait,originalPortrait);
+            c.ReplacePortrait=false;Install(c,false,false);
+            if(Hash(File.ReadAllBytes(portrait))!=Hash(originalPortrait))throw new Exception("Unchecked restored portrait was changed");
+            c.ReplacePortrait=true;FoxManifest repaired=Install(c,false,false);
+            FoxChange repairedPortrait=repaired.Changes.Find(delegate(FoxChange x){return x.Target==portrait;});
+            if(repairedPortrait.Backup!=portraitBackup||Hash(File.ReadAllBytes(portraitBackup))!=Hash(originalPortrait)||Hash(File.ReadAllBytes(portrait))!=Hash(Data("Portrait/jester_portrait.png"))||Directory.GetFiles(Path.Combine(c.AppRoot,"Backups")).Length!=backups)throw new Exception("Restored-original portrait recovery or backup preservation failed");
+            File.WriteAllBytes(portrait,Utf8.GetBytes("unknown portrait after installation"));
+            bool blockedUnknownPortrait=false;try{Install(c,false,false);}catch(IOException){blockedUnknownPortrait=true;}
+            if(!blockedUnknownPortrait||Utf8.GetString(File.ReadAllBytes(portrait))!="unknown portrait after installation")throw new Exception("Unknown portrait edit was overwritten");
+            File.WriteAllBytes(portrait,Data("Portrait/jester_portrait.png"));
+            log.AppendLine("PASS: game-restored original portrait accepted only when selected; first backup preserved; unknown portrait edit rejected");
             if(!File.Exists(Path.Combine(c.AppRoot,"F4E FOX SENSE.exe")))throw new Exception("Completion launch target missing");
             log.AppendLine("PASS: installed folder and completion launch target exist");
             if(Hash(File.ReadAllBytes(Path.Combine(c.AppRoot,"logo.png")))!=Hash(Data("Branding/logo.png"))||Hash(File.ReadAllBytes(Path.Combine(c.AppRoot,"F4E FOX SENSE.ico")))!=Hash(Data("Branding/F4E FOX SENSE.ico")))throw new Exception("Installed branding missing");

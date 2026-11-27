@@ -42,7 +42,7 @@ def check(data, name, depth=0):
 for path in sorted(args.root.rglob('*')):
     if path.is_file():
         check(path.read_bytes(), path.relative_to(args.root).as_posix())
-release = args.root/'Release/0.10.13'
+release = args.root/'Release/0.10.14'
 if args.embedded_payload:
     check(args.embedded_payload.read_bytes(), 'installer!Fox.Payload.zip')
 for line in (release/'SHA256SUMS.txt').read_text().splitlines():

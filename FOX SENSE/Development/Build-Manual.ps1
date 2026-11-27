@@ -3,7 +3,7 @@ $ErrorActionPreference='Stop'
 $base=$PSScriptRoot
 $source=Join-Path $base 'Source'
 $runtime=Join-Path $base 'Package\Overlay'
-if(!$OutputRoot){$OutputRoot=Join-Path $base '../Release/0.10.13'}
+if(!$OutputRoot){$OutputRoot=Join-Path $base '../Release/0.10.14'}
 $release=[IO.Path]::GetFullPath($OutputRoot)
 if(!$StageRoot){$StageRoot=Join-Path $base 'ManualPackage'}
 $stage=[IO.Path]::GetFullPath($StageRoot)
@@ -26,7 +26,7 @@ Copy-Item -LiteralPath (Join-Path $source 'Bridge\FoxViewFov.lua') -Destination 
 $jester=Join-Path $stage 'Saved Games\DCS_F4E\jester\mods'
 [void][IO.Directory]::CreateDirectory((Join-Path $jester 'init'))
 $probe=[IO.File]::ReadAllText((Join-Path $source 'Bridge\F4RwrProbe.lua'))
-$probe=$probe.Replace('__FOX_PROBE_LOG__','C:\Users\YOUR_WINDOWS_USER\Saved Games\DCS\Logs\F4RwrProbe.log')
+$probe=$probe.Replace('__FOX_PROBE_LOG__','YOUR_DCS_PROFILE/Logs/F4RwrProbe.log')
 [IO.File]::WriteAllText((Join-Path $jester 'F4RwrProbe.lua'),$probe,[Text.UTF8Encoding]::new($false))
 Copy-Item -LiteralPath (Join-Path $source 'Bridge\StartF4RwrProbe.lua') -Destination (Join-Path $jester 'init') -Force
 $start=@'
@@ -50,11 +50,11 @@ $portrait=Join-Path $stage 'Optional Portrait\Mods\aircraft\F-4E\UI\JesterSubtit
 [void][IO.Directory]::CreateDirectory($portrait)
 Copy-Item -LiteralPath (Join-Path $source 'Portrait\jester_portrait.png') -Destination $portrait -Force
 $readme=@'
-FOX SENSE 0.10.13 - Manual installation
+FOX SENSE 0.10.14 - Manual installation
 
 Adaptive HUD proportions follow the current DCS window. Text and symbols
 remain uniform on ultrawide and other aspect ratios; target centers retain
-their full-window projection. Live ultrawide appearance awaits user testing.
+their full-window projection. The 3440x1440 display fix was confirmed by the user.
 Camera/HUD target 60 Hz, world/target snapshots 10 Hz. The bridge
 requires a fresh local HUD heartbeat and stops work when FOX SENSE exits.
 The Flight data switch independently controls speed, altitude, HDG, AoA, Mach
@@ -72,16 +72,16 @@ files as the EXE edition. Do not run both editions at the same time.
    init\StartF4RwrProbe.lua under Saved Games\DCS_F4E\jester\mods.
 
 2. Copy the CONTENTS of this package's "Saved Games" folder into your Windows
-   Saved Games folder (normally C:\Users\YOUR_WINDOWS_USER\Saved Games).
+   Saved Games folder.
    Merge the corresponding folders; do not replace an entire profile folder.
    If you use DCS.openbeta or another DCS.* profile, use that folder instead
    of DCS. Keep DCS_F4E\jester\mods at your actual Jester mods location.
    On upgrade, keep your existing Runtime\HudSettings.json to retain settings.
 
 3. IMPORTANT: edit Saved Games\DCS_F4E\jester\mods\F4RwrProbe.lua with a text
-   editor. Replace the one path containing YOUR_WINDOWS_USER with the full
+   editor. Replace the placeholder YOUR_DCS_PROFILE with the full
    path to YOUR DCS profile's Logs\F4RwrProbe.log. For example:
-   C:\Users\YOUR_WINDOWS_USER\Saved Games\DCS\Logs\F4RwrProbe.log
+   YOUR_DCS_PROFILE/Logs/F4RwrProbe.log
    If you use DCS.openbeta, use DCS.openbeta in that path. Preserve the [[ ]].
 
 4. Open your DCS profile's Scripts\Export.lua. If it does not exist, create it.
@@ -128,7 +128,7 @@ if(Get-ChildItem -LiteralPath $stage -Recurse -File -Filter '*.exe'){throw 'Unex
 if([IO.Path]::GetFullPath($InstallerPath) -ne (Join-Path $release 'F4E FOX SENSE Setup.exe')){
  Copy-Item -LiteralPath $InstallerPath -Destination (Join-Path $release 'F4E FOX SENSE Setup.exe') -Force
 }
-$zip=Join-Path $release 'FOX-SENSE-0.10.13-Manual.zip'
+$zip=Join-Path $release 'FOX-SENSE-0.10.14-Manual.zip'
 Compress-Archive -Path (Join-Path $stage '*') -DestinationPath $zip -CompressionLevel Optimal -Force
 Get-FileHash -LiteralPath (Join-Path $release 'F4E FOX SENSE Setup.exe'),$zip -Algorithm SHA256 | ForEach-Object {$_.Hash.ToLowerInvariant()+'  '+[IO.Path]::GetFileName($_.Path)} | Set-Content -LiteralPath (Join-Path $release 'SHA256SUMS.txt') -Encoding ASCII
 Write-Output 'PASS: manual runtime hashes match EXE payload; no bundled EXE; no personal settings or logs copied'

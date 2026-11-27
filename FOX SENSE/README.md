@@ -1,10 +1,12 @@
-# FOX SENSE 0.10.13
+# FOX SENSE 0.10.14
 
 Situational-awareness overlay for DCS World. Jester integration and the optional portrait apply to the F-4E.
 
-[Download 0.10.13](https://github.com/Bishop-611/DCS-BA-MODS/releases/tag/fox-sense-v0.10.13) · [All projects](../README.md)
+[Download 0.10.14](https://github.com/Bishop-611/DCS-BA-MODS/releases/tag/fox-sense-v0.10.14) · [All projects](../README.md)
 
 HUD text and symbols automatically retain their proportions as the DCS window changes size. The user confirmed the fix on a **3440x1440** ultrawide display.
+
+Version 0.10.14 fixes an installer conflict when the Jester portrait already matches the saved original. Unknown portrait changes remain protected. The overlay runtime is unchanged from 0.10.13.
 
 ## Downloads and installation
 
