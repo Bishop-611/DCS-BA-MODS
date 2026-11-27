@@ -1,10 +1,10 @@
-# F4E-Niko WSO v11
+# F4E-Niko WSO v12
 
 Rear-seat Niko character and first-person body for the Heatblur F-4E, including the Jester portrait and voice, nine Tape Player tracks, and FOX PLATOON v0.13 livery. Front-seat crew are unchanged.
 
-[Download v11 and SHA-256](https://github.com/Bishop-611/DCS-BA-MODS/releases/tag/f4e-niko-wso-v11) · [All projects](../README.md)
+[Download v12 and SHA-256](https://github.com/Bishop-611/DCS-BA-MODS/releases/tag/f4e-niko-wso-v12) · [All projects](../README.md)
 
-v11 updates cockpit hand/foot placement, shoe fit, rear viewpoint, and occupied rear ejection-seat poses. These changes passed offline checks; live mission confirmation is pending.
+The rear cockpit camera now sits halfway between the upper edges of Niko's eyes. All 13 built-in rear-seat views use that origin and retain their individual look angles and zoom. Custom saved views may override these presets.
 
 ## Install / restore
 

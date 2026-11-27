@@ -1,4 +1,4 @@
-# Rebuild the Niko WSO v11 installer
+# Rebuild the Niko WSO v12 installer
 
 From the project directory, use 64-bit Windows PowerShell and .NET Framework 4.x:
 
