@@ -1,4 +1,4 @@
-F4E Modern Avionics 1.3.2 - Manual Installation
+F4E Modern Avionics 1.3.4 - Manual Installation
 ================================================
 For a clean Heatblur F-4E installation. Reference build: DCS 2.9.32.30490.
 Use File Explorer, a text editor, and a local browser. The model patcher runs
@@ -62,8 +62,8 @@ also rebind the affected controls in DCS. Empty profiles skip this step.
 
 8. TEST AND RESTORE
 Start DCS and enter the F-4E. Check radar, HUD, RWR and controls. The manual
-package was checked offline against the supported files. Live DCS behavior
-and multiplayer compatibility are pending verification.
+package was checked offline against the supported files. AGM-88 release was confirmed in local DCS tests with both an empty selection
+and a selected target. Multiplayer behavior has not been verified in this release.
 
 To uninstall, exit DCS. Restore the backed-up models, DSCG.fxo and game Lua
 files. If you made later edits to a shared Lua file, reverse only this mod's
